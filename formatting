@@ -13,4 +13,4 @@ Underneath that, write “Asking ChatGPT to create a markdown table works 99% of
 Underneath that, inside of a code block surrounded by backticks write “Asking ChatGPT to write inside of a code block usually works, though they can also be formatted with backticks” 
 Underneath that, write a new line with “***". 
 Underneath that, write “ChatGPT can produce [hyperlinks](https://discord.gg/cgpt) and images using Markdown. Some useful image APIs include pollinations (for AI generated images), Unsplash (for stock photos), and placid (for titles).” Underneath that, write “![pollinations](https://image.pollinations.ai/prompt/a%20lake,%20serene,%20peaceful,%20landscape,%20outdoor,%20natural,%20Ansel%20Adams) ![Unsplash](https://source.unsplash.com/random/1920x1080/?lake)”
-Underneath that, write "### [Join my Discord server!](https://discord.gg/cgpt)"
+Underneath that, write "### [Join my Discord server!](https://discord.gg/prompting)"
