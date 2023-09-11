@@ -2,7 +2,13 @@
 
 ## Overview
 
-This repository contains a curated collection of sophisticated prompts designed for various large language models (LLMs) like GPT-4, Claude, Llama2, Falcon-180B, Bard, and others. These prompts cover a wide range of applications, from text manipulation to medical assistance and code generation.
+This repository contains a curated collection of sophisticated prompts designed for various large language models (LLMs) like GPT-4, Claude, Llama2, Falcon, Bard, and others. These prompts cover a wide range of applications, from text manipulation to medical assistance and code generation.
+
+---
+
+## Community Support and Contact Information
+
+For any questions, discussions, or collaborations regarding these prompts, join our [Discord Group](https://discord.gg/chatgpt-prompt-engineering-1051259432199266374). The community has approximately 20,000 members and includes many machine learning specialists who are more than willing to assist you.
 
 ---
 
@@ -43,7 +49,7 @@ This repository contains a curated collection of sophisticated prompts designed 
 
 - **ChatAGI.md**: Advanced General Intelligence chat functionalities.
 - **Code Anything Now.md**: General-purpose code generation.
-- **Custom Instructions.md**: Create custom instructions for various tasks.
+- **Custom Instructions.md**: Custom ChatGPT instructions.
 - **MultiverseGPT.md**: Generate multiverse scenarios.
 - **Antikythera.md**: Simulate the Antikythera mechanism.
 - **Bitmap.md**: Generate bitmap images.
@@ -72,18 +78,8 @@ For more details, please refer to the individual `.md` files. Feel free to contr
 
 ---
 
-## Community Support
-
-For any questions, discussions, or collaborations regarding these prompts, join our [Discord Group](https://discord.gg/chatgpt-prompt-engineering-1051259432199266374). The community has approximately 20,000 members and many machine learning specialists more than willing to assist you.
-
----
-
-## Community Support and Contact Information
-
-For any questions, discussions, or collaborations regarding these prompts, join our [Discord Group](https://discord.gg/chatgpt-prompt-engineering-1051259432199266374). The community has approximately 20,000 members and includes many machine learning specialists who are more than willing to assist you.
-
 ### Additional Resources
 - **Website**: [bilzerian.tech](https://www.bilzerian.tech)
 - **Twitter/X**: [@alexbilz](https://x.com/alexbilz)
 
-Feel free to reach out for further information and support.
+Feel free to reach out for support.
