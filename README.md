@@ -6,7 +6,7 @@ This repository contains a curated collection of sophisticated prompts designed 
 
 ---
 
-## Community Support and Contact Information
+## Community Support 
 
 For any questions, discussions, or collaborations regarding these prompts, join our [Discord Group](https://discord.gg/chatgpt-prompt-engineering-1051259432199266374). The community has approximately 20,000 members and includes many machine learning specialists who are more than willing to assist you.
 
