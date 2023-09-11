@@ -43,15 +43,15 @@ For any questions, discussions, or collaborations regarding these prompts, join 
 ## Medical Prompts
 
 - **Medical-Bot.md**: Assist with medical queries.
-- **Psychologist.md**: Provide psychological advice.
+- **Psychologist.md**: Act as a psychologist.
 
 ## Miscellaneous
 
-- **ChatAGI.md**: Advanced General Intelligence chat functionalities.
+- **ChatAGI.md**: Jailbreak
 - **Code Anything Now.md**: General-purpose code generation.
 - **Custom Instructions.md**: Custom ChatGPT instructions.
-- **MultiverseGPT.md**: Generate multiverse scenarios.
-- **Antikythera.md**: Simulate the Antikythera mechanism.
+- **MultiverseGPT.md**: Generate different scenarios.
+- **Antikythera.md**: Jailbreak
 - **Bitmap.md**: Generate bitmap images.
 - **Graphing.md**: Create graphs and charts.
 - **TextAdventure.md**: Generate text-based adventure games.
