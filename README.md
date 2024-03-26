@@ -65,6 +65,7 @@ For any questions, discussions, or collaborations regarding these prompts, join 
 - **Scientific Data Visualizer.md**: Create scientific data visualizations.
 - **Wolfram.md**: Integrate with Wolfram for advanced computations.
 - **Commit Messages.md**: Generate commit messages for version control.
+- **cursor_IDE_prompt.md**: For Cursor.sh "Rules for AI" section.
 
 ## Prompt Generation
 
