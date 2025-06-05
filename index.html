@@ -21,8 +21,8 @@
     .prompt-link{background:var(--card);transition:background .15s ease,box-shadow .15s ease,transform .15s ease}
     .prompt-link:hover{background:var(--card-hover);box-shadow:0 0 0 1px var(--accent);transform:translateY(-2px)}
     input#search{background:var(--card);color:var(--fg)}
-    .copy-btn{position:absolute;top:.5rem;right:.5rem;font-size:.75rem;padding:.25rem .5rem;border-radius:.25rem;background:var(--accent);color:var(--bg);display:none}
-    .group:hover .copy-btn{display:block}
+    .copy-btn{position:absolute;top:.5rem;right:.5rem;font-size:.75rem;padding:.25rem .5rem;border-radius:.25rem;background:var(--accent);color:var(--bg);display:none;cursor:pointer}
+    .group:hover .copy-btn,.copy-btn:focus{display:block}
   </style>
 </head>
 <body class="selection:bg-emerald-500/40">
@@ -53,10 +53,10 @@
 
       <!-- Quick nav -->
       <nav class="flex flex-wrap gap-4 text-xs text-gray-400 uppercase tracking-wider">
-        <a href="#writing-editing"   class="hover:text-emerald-400">writing</a>
+        <a href="#writing_editing"   class="hover:text-emerald-400">writing</a>
         <a href="#medical"           class="hover:text-emerald-400">medical</a>
         <a href="#programming"       class="hover:text-emerald-400">programming</a>
-        <a href="#prompt-generation" class="hover:text-emerald-400">prompt-gen</a>
+        <a href="#prompt_generation" class="hover:text-emerald-400">prompt-gen</a>
         <a href="#finance"           class="hover:text-emerald-400">finance</a>
         <a href="#miscellaneous"     class="hover:text-emerald-400">misc</a>
       </nav>
@@ -131,6 +131,25 @@
       <li class="relative group"><a href="prompts/prompt_generation/PromptScript.md" class="prompt-link block p-4 rounded">PromptScript</a><button class="copy-btn" data-path="prompts/prompt_generation/PromptScript.md" aria-label="Copy prompt">Copy</button></li>
       <li class="relative group"><a href="prompts/prompt_generation/PromptScriptEngineer.md" class="prompt-link block p-4 rounded">PromptScript Engineer</a><button class="copy-btn" data-path="prompts/prompt_generation/PromptScriptEngineer.md" aria-label="Copy prompt">Copy</button></li>
       <li class="relative group"><a href="prompts/prompt_generation/ScriptingTemplate.md" class="prompt-link block p-4 rounded">BEGIN MNEMOSYNE {M}{SCRIPT}</a><button class="copy-btn" data-path="prompts/prompt_generation/ScriptingTemplate.md" aria-label="Copy prompt">Copy</button></li>
+    </ul></section>
+
+    <!-- WRITING & EDITING (15) -->
+    <section id="writing_editing"><h2 class="section-heading">Writing & Editing</h2><ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <li class="relative group"><a href="prompts/writing_editing/editing_revision/Preserve%20Technical%20Terminology.md" class="prompt-link block p-4 rounded">Preserve Technical Terminology</a><button class="copy-btn" data-path="prompts/writing_editing/editing_revision/Preserve%20Technical%20Terminology.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/writing_editing/editing_revision/Proofread.md" class="prompt-link block p-4 rounded">Proofread</a><button class="copy-btn" data-path="prompts/writing_editing/editing_revision/Proofread.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/writing_editing/editing_revision/Rewrite.md" class="prompt-link block p-4 rounded">Rewrite</a><button class="copy-btn" data-path="prompts/writing_editing/editing_revision/Rewrite.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/writing_editing/editing_revision/formatting.md" class="prompt-link block p-4 rounded">Formatting Tips</a><button class="copy-btn" data-path="prompts/writing_editing/editing_revision/formatting.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/writing_editing/educational/Teach.md" class="prompt-link block p-4 rounded">Teach</a><button class="copy-btn" data-path="prompts/writing_editing/educational/Teach.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/writing_editing/educational/Thought%20Stream%20Transcription.md" class="prompt-link block p-4 rounded">Thought Stream Transcription</a><button class="copy-btn" data-path="prompts/writing_editing/educational/Thought%20Stream%20Transcription.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/writing_editing/extraction_summarization/Action%20Items.md" class="prompt-link block p-4 rounded">Action Items</a><button class="copy-btn" data-path="prompts/writing_editing/extraction_summarization/Action%20Items.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/writing_editing/extraction_summarization/Book%20Summary.md" class="prompt-link block p-4 rounded">Book Summary</a><button class="copy-btn" data-path="prompts/writing_editing/extraction_summarization/Book%20Summary.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/writing_editing/extraction_summarization/Comprehensive%20Analysis.md" class="prompt-link block p-4 rounded">Comprehensive Analysis</a><button class="copy-btn" data-path="prompts/writing_editing/extraction_summarization/Comprehensive%20Analysis.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/writing_editing/extraction_summarization/Non-Fiction%20Analysis.md" class="prompt-link block p-4 rounded">Non-Fiction Analysis</a><button class="copy-btn" data-path="prompts/writing_editing/extraction_summarization/Non-Fiction%20Analysis.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/writing_editing/extraction_summarization/NotesGPT.md" class="prompt-link block p-4 rounded">NotesGPT</a><button class="copy-btn" data-path="prompts/writing_editing/extraction_summarization/NotesGPT.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/writing_editing/extraction_summarization/Poem%20Analysis.md" class="prompt-link block p-4 rounded">Poem Analysis</a><button class="copy-btn" data-path="prompts/writing_editing/extraction_summarization/Poem%20Analysis.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/writing_editing/extraction_summarization/Short%20Summary.md" class="prompt-link block p-4 rounded">Short Summary</a><button class="copy-btn" data-path="prompts/writing_editing/extraction_summarization/Short%20Summary.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/writing_editing/style_emulation/hemingway" class="prompt-link block p-4 rounded">hemingway</a><button class="copy-btn" data-path="prompts/writing_editing/style_emulation/hemingway" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/writing_editing/verification/Accuracy%20Confirmation.md" class="prompt-link block p-4 rounded">Accuracy Confirmation</a><button class="copy-btn" data-path="prompts/writing_editing/verification/Accuracy%20Confirmation.md" aria-label="Copy prompt">Copy</button></li>
     </ul></section>
 <!-- END AUTO-GENERATED -->
   </main>

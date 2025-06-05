@@ -38,7 +38,11 @@ def build_site_sections() -> str:
     for category_path in sorted(PROMPTS_DIR.iterdir()):
         if not category_path.is_dir():
             continue
-        files = sorted(f for f in category_path.iterdir() if f.is_file())
+        files = sorted(
+            f
+            for f in category_path.rglob('*')
+            if f.is_file() and not f.name.startswith('.')
+        )
         if not files:
             continue
         title = CATEGORY_NAMES.get(
