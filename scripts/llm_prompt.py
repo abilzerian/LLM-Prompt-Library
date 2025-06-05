@@ -18,12 +18,15 @@ def main(argv: list[str] | None = None) -> None:
         prog="llm-prompt",
         description="LLM Prompt Library command-line tools",
         usage="llm-prompt <command> [<args>]",
+        add_help=False,
     )
-    parser.add_argument("command", help="Subcommand to run", nargs="?")
+    parser.add_argument("command", nargs="?", help="Subcommand to run")
+    parser.add_argument("-h", "--help", action="store_true", help="Show this help message and exit")
     args, remaining = parser.parse_known_args(argv)
 
-    if not args.command:
+    if args.help or not args.command:
         parser.print_help()
+        print("\nAvailable commands:", ", ".join(sorted(COMMAND_MODULES)))
         parser.exit()
 
     module_path = COMMAND_MODULES.get(args.command)
