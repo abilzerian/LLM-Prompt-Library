@@ -36,11 +36,11 @@
 | -------- | ------: | ------------- |
 | Finance | **2** | [10-K Analyzer](prompts/finance/10-KAnalyzer.md) • [Act as a venture capitalist](prompts/finance/venturecapitalist.md) |
 | Medical | **1** | [Cognitive Bias Assessment Tool](prompts/medical/Cognitive%20Bias%20Assessment%20Tool.md) |
-| Miscellaneous | **4** | [ChatAGI](prompts/miscellaneous/ChatAGI.md) • [Code Anything Now](prompts/miscellaneous/Code%20Anything%20Now.md) |
-| Programming | **15** | [AWS Architect](prompts/programming/AWS%20Architect.md) • [Code Explainer (explain code in plain english)](prompts/programming/Code_Explainer.md) |
+| Miscellaneous | **8** | [ChatAGI](prompts/miscellaneous/ChatAGI.md) • [Code Anything Now](prompts/miscellaneous/Code%20Anything%20Now.md) |
+| Programming | **17** | [AWS Architect](prompts/programming/AWS%20Architect.md) • [Azure Architect](prompts/programming/Azure%20Architect.md) |
 | Prompt Generation | **7** | [CoT_Probe_o3](prompts/prompt_generation/CoT_Probe_o3.md) • [DALL-E](prompts/prompt_generation/DALL-E.md) |
 | Writing & Editing | **14** | [Preserve Technical Terminology](prompts/writing_editing/editing_revision/Preserve%20Technical%20Terminology.md) • [Proofread](prompts/writing_editing/editing_revision/Proofread.md) |
-| **Total** | **43** | — |
+| **Total** | **49** | — |
 <!-- /AUTO‑GENERATED -->
 
 > 📖 Full list lives in [`prompts/INDEX.md`](prompts/INDEX.md) — rebuilt on every commit.

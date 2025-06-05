@@ -18,6 +18,7 @@
 | [programming/Azure Architect.md](programming/Azure%20Architect.md) | Azure Architect |
 | [programming/Code_Explainer.md](programming/Code_Explainer.md) | Code Explainer (explain code in plain english) |
 | [programming/Copilot.md](programming/Copilot.md) | Copilot |
+| [programming/DataSQL-Optimizer.md](programming/DataSQL-Optimizer.md) | DataSQL Optimizer |
 | [programming/Data_Conversion_Specialist.md](programming/Data_Conversion_Specialist.md) | Data Conversion Specialist |
 | [programming/ExcelFormulas.md](programming/ExcelFormulas.md) | Excel Formula Specialist |
 | [programming/HTML.md](programming/HTML.md) | HTML |
