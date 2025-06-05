@@ -29,9 +29,7 @@ jobs:
         run: pip install pre-commit
 
       - name: Install project dependencies
-        run: |
-          pip install -r scripts/requirements.txt
-          python -m spacy download en_core_web_lg
+        run: pip install -r scripts/requirements.txt
 
       - name: Run pre-commit checks
         run: pre-commit run --all-files --show-diff-on-failure --color always
