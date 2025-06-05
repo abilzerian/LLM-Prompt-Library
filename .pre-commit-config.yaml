@@ -6,3 +6,8 @@ repos:
         entry: python scripts/build_index.py
         language: system
         pass_filenames: false
+    -   id: validate-prompts
+        name: Validate prompts
+        entry: python scripts/validate_prompts.py
+        language: system
+        pass_filenames: false

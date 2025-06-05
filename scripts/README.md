@@ -293,7 +293,7 @@ financial_metacognition/
 │   ├── limitation_patterns.json - Patterns for reasoning limitations
 │   └── confidence_patterns.json - Confidence assessment patterns
 └── examples/ - Example files for testing
-    ├── test_financial_metacognition.py - Test script
+    ├── demo_financial_metacognition.py - Test script
     ├── financial_prompt.txt - Example prompt
     └── financial_response.txt - Example response
 ```
@@ -308,7 +308,7 @@ python financial_metacognition/financial_metacognition.py --prompt-file input/pr
 python financial_metacognition/financial_metacognition.py --prompt-file input/prompt.txt --response-file input/response.txt --region EU --output eu_analysis.json
 
 # Running the Test Script
-python financial_metacognition/examples/test_financial_metacognition.py --region US --accounting-standard GAAP
+python financial_metacognition/examples/demo_financial_metacognition.py --region US --accounting-standard GAAP
 ```
 
 #### Configuration
