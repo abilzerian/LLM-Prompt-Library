@@ -12,7 +12,7 @@ import argparse
 import json
 import random
 import time
-from typing import Dict, List, Tuple, Any, Optional, Callable
+from typing import Dict, List, Any
 import statistics
 from datetime import datetime
 
@@ -306,13 +306,13 @@ class PromptEvolution:
             )
         else:
             user_message += (
-                f"Create a comprehensive prompt that will guide an AI to accomplish this task "
-                f"effectively. Include:\n"
-                f"1. A clear title\n"
-                f"2. Configuration options (like 'be concise', 'step by step', etc.)\n"
-                f"3. Detailed instructions\n"
-                f"4. Example outputs in a code block\n"
-                f"5. Any other elements that will make the prompt more effective"
+                "Create a comprehensive prompt that will guide an AI to accomplish this task "
+                "effectively. Include:\n"
+                "1. A clear title\n"
+                "2. Configuration options (like 'be concise', 'step by step', etc.)\n"
+                "3. Detailed instructions\n"
+                "4. Example outputs in a code block\n"
+                "5. Any other elements that will make the prompt more effective"
             )
         
         # Simulate LLM response if not available

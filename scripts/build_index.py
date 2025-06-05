@@ -4,7 +4,9 @@ Builds prompts/INDEX.md with a table of all prompt files.
 Run from repo root:  python scripts/build_index.py
 """
 
-import pathlib, re, textwrap
+import pathlib
+import re
+import textwrap
 from urllib.parse import quote
 
 PROMPTS_DIR = pathlib.Path("prompts")
