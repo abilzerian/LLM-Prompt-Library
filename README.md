@@ -35,12 +35,12 @@
 | Category | Prompts | Example links |
 | -------- | ------: | ------------- |
 | Writing & Editing | **15** | [Accuracy Confirmation](prompts/writing_editing/verification/Accuracy%20Confirmation.md) • [Proofread](prompts/writing_editing/editing_revision/Proofread.md) |
-| Programming | **15** | [AWS Architect](prompts/programming/AWS%20Architect.md) • [UnstructuredText → JSON](prompts/programming/UnstructuredText_to_JSON.md) |
+| Programming | **16** | [Azure Architect](prompts/programming/Azure%20Architect.md) • [UnstructuredText → JSON](prompts/programming/UnstructuredText_to_JSON.md) |
 | Prompt Generation | **7** | [Prompt Creator](prompts/prompt_generation/Prompt%20Creator.md) • [DALL‑E](prompts/prompt_generation/DALL-E.md) |
 | Medical | **3** | [Cognitive Bias Assessment Tool](prompts/medical/Cognitive%20Bias%20Assessment%20Tool.md) |
 | Finance | **2** | [10‑K Analyzer](prompts/finance/10-KAnalyzer.md) • [Venture Capitalist](prompts/finance/venturecapitalist.md) |
 | Miscellaneous | **8** | [TextAdventure](prompts/miscellaneous/textadventure) |
-| **Total** | **50** | — |
+| **Total** | **51** | — |
 <!-- /AUTO‑GENERATED -->
 
 > 📖 Full list lives in [`prompts/INDEX.md`](prompts/INDEX.md) — rebuilt on every commit.
