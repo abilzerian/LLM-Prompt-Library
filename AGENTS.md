@@ -164,4 +164,4 @@ A: The GitHub Pages site auto-builds from `main` after `build_index.py` updates 
 
 ---
 
-**You are now ready. Build responsibly ✨**
+You are now ready. Build responsibly ✨

@@ -278,7 +278,7 @@ class PromptAnalyzer:
         
         # Calculate base score
         content_length = len(content)
-        
+
         # More instructions are good, more complexity is bad
         base_score = 50 + (instruction_count * 5) - (complexity_count * 3)
         
