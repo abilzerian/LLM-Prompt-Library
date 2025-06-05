@@ -63,7 +63,10 @@ def build_site_sections() -> str:
                     rel = f.relative_to(PROMPTS_DIR).as_posix()
                     url = quote(f"prompts/{rel}", safe="/")
             sections.append(
-                f"      <li><a href=\"{url}\" class=\"prompt-link block p-4 rounded\">{text}</a></li>"
+                "      <li class=\"relative group\">"
+                f"<a href=\"{url}\" class=\"prompt-link block p-4 rounded\">{text}</a>"
+                f"<button class=\"copy-btn\" data-path=\"{url}\" aria-label=\"Copy prompt\">Copy</button>"
+                "</li>"
             )
         sections.append("    </ul></section>")
         sections.append("")

@@ -12,15 +12,17 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    :root[data-theme="dark"]  {--bg:#0d1117;--fg:#c9d1d9;--accent:#00ff88;--card:#161b22;--card-hover:#1f252d}
-    :root[data-theme="light"] {--bg:#ffffff;--fg:#1f2937;--accent:#14b8a6;--card:#f1f5f9;--card-hover:#e2e8f0}
+    :root[data-theme="dark"]  {--bg:#0d1117;--fg:#c9d1d9;--accent:#10b981;--card:#161b22;--card-hover:#1f252d}
+    :root[data-theme="light"] {--bg:#ffffff;--fg:#1f2937;--accent:#059669;--card:#f1f5f9;--card-hover:#e2e8f0}
 
-    body{font-family:'JetBrains Mono',monospace;background:var(--bg);color:var(--fg)}
+    body{font-family:'JetBrains Mono',monospace;background:var(--bg);color:var(--fg);line-height:1.5}
     .accent{color:var(--accent)}
     .section-heading{border-left:4px solid var(--accent);padding-left:.5rem;font-weight:600;margin-bottom:1rem}
-    .prompt-link{background:var(--card);transition:background .15s ease,box-shadow .15s ease}
-    .prompt-link:hover{background:var(--card-hover);box-shadow:0 0 0 1px var(--accent)}
+    .prompt-link{background:var(--card);transition:background .15s ease,box-shadow .15s ease,transform .15s ease}
+    .prompt-link:hover{background:var(--card-hover);box-shadow:0 0 0 1px var(--accent);transform:translateY(-2px)}
     input#search{background:var(--card);color:var(--fg)}
+    .copy-btn{position:absolute;top:.5rem;right:.5rem;font-size:.75rem;padding:.25rem .5rem;border-radius:.25rem;background:var(--accent);color:var(--bg);display:none}
+    .group:hover .copy-btn{display:block}
   </style>
 </head>
 <body class="selection:bg-emerald-500/40">
@@ -75,60 +77,60 @@
     <!-- BEGIN AUTO-GENERATED -->
     <!-- FINANCE (2) -->
     <section id="finance"><h2 class="section-heading">Finance</h2><ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-      <li><a href="prompts/finance/10-KAnalyzer.md" class="prompt-link block p-4 rounded">10-K Analyzer</a></li>
-      <li><a href="prompts/finance/venturecapitalist.md" class="prompt-link block p-4 rounded">Act as a venture capitalist</a></li>
+      <li class="relative group"><a href="prompts/finance/10-KAnalyzer.md" class="prompt-link block p-4 rounded">10-K Analyzer</a><button class="copy-btn" data-path="prompts/finance/10-KAnalyzer.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/finance/venturecapitalist.md" class="prompt-link block p-4 rounded">Act as a venture capitalist</a><button class="copy-btn" data-path="prompts/finance/venturecapitalist.md" aria-label="Copy prompt">Copy</button></li>
     </ul></section>
 
     <!-- MEDICAL (3) -->
     <section id="medical"><h2 class="section-heading">Medical</h2><ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-      <li><a href="prompts/medical/Cognitive%20Bias%20Assessment%20Tool.md" class="prompt-link block p-4 rounded">Cognitive Bias Assessment Tool</a></li>
-      <li><a href="https://github.com/abilzerian/GPT-4-Prompt-Medical-Bot" class="prompt-link block p-4 rounded">Medical-Bot</a></li>
-      <li><a href="prompts/medical/psychologist" class="prompt-link block p-4 rounded">psychologist</a></li>
+      <li class="relative group"><a href="prompts/medical/Cognitive%20Bias%20Assessment%20Tool.md" class="prompt-link block p-4 rounded">Cognitive Bias Assessment Tool</a><button class="copy-btn" data-path="prompts/medical/Cognitive%20Bias%20Assessment%20Tool.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="https://github.com/abilzerian/GPT-4-Prompt-Medical-Bot" class="prompt-link block p-4 rounded">Medical-Bot</a><button class="copy-btn" data-path="https://github.com/abilzerian/GPT-4-Prompt-Medical-Bot" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/medical/psychologist" class="prompt-link block p-4 rounded">psychologist</a><button class="copy-btn" data-path="prompts/medical/psychologist" aria-label="Copy prompt">Copy</button></li>
     </ul></section>
 
     <!-- MISCELLANEOUS (8) -->
     <section id="miscellaneous"><h2 class="section-heading">Miscellaneous</h2><ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-      <li><a href="prompts/miscellaneous/ChatAGI.md" class="prompt-link block p-4 rounded">ChatAGI</a></li>
-      <li><a href="prompts/miscellaneous/Code%20Anything%20Now.md" class="prompt-link block p-4 rounded">Code Anything Now</a></li>
-      <li><a href="prompts/miscellaneous/Custom%20Instructions.md" class="prompt-link block p-4 rounded">Custom Instructions</a></li>
-      <li><a href="prompts/miscellaneous/MultiverseGPT.md" class="prompt-link block p-4 rounded">MultiverseGPT</a></li>
-      <li><a href="prompts/miscellaneous/antikythera.md" class="prompt-link block p-4 rounded">Antikythera</a></li>
-      <li><a href="prompts/miscellaneous/bitmap.md" class="prompt-link block p-4 rounded">Bitmap</a></li>
-      <li><a href="prompts/miscellaneous/graphing.md" class="prompt-link block p-4 rounded">Graphing</a></li>
-      <li><a href="prompts/miscellaneous/textadventure.md" class="prompt-link block p-4 rounded">Text Adventure</a></li>
+      <li class="relative group"><a href="prompts/miscellaneous/ChatAGI.md" class="prompt-link block p-4 rounded">ChatAGI</a><button class="copy-btn" data-path="prompts/miscellaneous/ChatAGI.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/miscellaneous/Code%20Anything%20Now.md" class="prompt-link block p-4 rounded">Code Anything Now</a><button class="copy-btn" data-path="prompts/miscellaneous/Code%20Anything%20Now.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/miscellaneous/Custom%20Instructions.md" class="prompt-link block p-4 rounded">Custom Instructions</a><button class="copy-btn" data-path="prompts/miscellaneous/Custom%20Instructions.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/miscellaneous/MultiverseGPT.md" class="prompt-link block p-4 rounded">MultiverseGPT</a><button class="copy-btn" data-path="prompts/miscellaneous/MultiverseGPT.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/miscellaneous/antikythera.md" class="prompt-link block p-4 rounded">Antikythera</a><button class="copy-btn" data-path="prompts/miscellaneous/antikythera.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/miscellaneous/bitmap.md" class="prompt-link block p-4 rounded">Bitmap</a><button class="copy-btn" data-path="prompts/miscellaneous/bitmap.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/miscellaneous/graphing.md" class="prompt-link block p-4 rounded">Graphing</a><button class="copy-btn" data-path="prompts/miscellaneous/graphing.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/miscellaneous/textadventure.md" class="prompt-link block p-4 rounded">Text Adventure</a><button class="copy-btn" data-path="prompts/miscellaneous/textadventure.md" aria-label="Copy prompt">Copy</button></li>
     </ul></section>
 
     <!-- PROGRAMMING (18) -->
     <section id="programming"><h2 class="section-heading">Programming</h2><ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-      <li><a href="prompts/programming/AWS%20Architect.md" class="prompt-link block p-4 rounded">AWS Architect</a></li>
-      <li><a href="prompts/programming/Azure%20Architect.md" class="prompt-link block p-4 rounded">Azure Architect</a></li>
-      <li><a href="prompts/programming/Code_Explainer.md" class="prompt-link block p-4 rounded">Code Explainer (explain code in plain english)</a></li>
-      <li><a href="prompts/programming/Copilot.md" class="prompt-link block p-4 rounded">Copilot</a></li>
-      <li><a href="prompts/programming/Data_Conversion_Specialist.md" class="prompt-link block p-4 rounded">Data Conversion Specialist</a></li>
-      <li><a href="prompts/programming/ExcelFormulas.md" class="prompt-link block p-4 rounded">Excel Formula Specialist</a></li>
-      <li><a href="prompts/programming/HTML.md" class="prompt-link block p-4 rounded">HTML</a></li>
-      <li><a href="prompts/programming/Jinja2_Code_Optimizer.md" class="prompt-link block p-4 rounded">Jinja2 Code Optimizer</a></li>
-      <li><a href="prompts/programming/LaTeX_specialist.md" class="prompt-link block p-4 rounded">LaTeX Specialist</a></li>
-      <li><a href="prompts/programming/OnePageWebsite.md" class="prompt-link block p-4 rounded">One-Page Website Coder</a></li>
-      <li><a href="prompts/programming/Python.md" class="prompt-link block p-4 rounded">Python</a></li>
-      <li><a href="prompts/programming/PythonBugFixer.md" class="prompt-link block p-4 rounded">Python Bug Fixer</a></li>
-      <li><a href="prompts/programming/Scientific%20Data%20Visualizer.md" class="prompt-link block p-4 rounded">Scientific Data Visualizer</a></li>
-      <li><a href="prompts/programming/UnstructuredText_to_JSON.md" class="prompt-link block p-4 rounded">Unstructured Text to JSON Converter</a></li>
-      <li><a href="prompts/programming/Wolfram.md" class="prompt-link block p-4 rounded">Wolfram</a></li>
-      <li><a href="prompts/programming/commit%20messages.md" class="prompt-link block p-4 rounded">Commit Messages</a></li>
-      <li><a href="prompts/programming/cursor_IDE_prompt.md" class="prompt-link block p-4 rounded">Cursor IDE Prompt</a></li>
-      <li><a href="prompts/programming/priompt_style_cursor_IDE" class="prompt-link block p-4 rounded">priompt_style_cursor_IDE</a></li>
+      <li class="relative group"><a href="prompts/programming/AWS%20Architect.md" class="prompt-link block p-4 rounded">AWS Architect</a><button class="copy-btn" data-path="prompts/programming/AWS%20Architect.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/programming/Azure%20Architect.md" class="prompt-link block p-4 rounded">Azure Architect</a><button class="copy-btn" data-path="prompts/programming/Azure%20Architect.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/programming/Code_Explainer.md" class="prompt-link block p-4 rounded">Code Explainer (explain code in plain english)</a><button class="copy-btn" data-path="prompts/programming/Code_Explainer.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/programming/Copilot.md" class="prompt-link block p-4 rounded">Copilot</a><button class="copy-btn" data-path="prompts/programming/Copilot.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/programming/Data_Conversion_Specialist.md" class="prompt-link block p-4 rounded">Data Conversion Specialist</a><button class="copy-btn" data-path="prompts/programming/Data_Conversion_Specialist.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/programming/ExcelFormulas.md" class="prompt-link block p-4 rounded">Excel Formula Specialist</a><button class="copy-btn" data-path="prompts/programming/ExcelFormulas.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/programming/HTML.md" class="prompt-link block p-4 rounded">HTML</a><button class="copy-btn" data-path="prompts/programming/HTML.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/programming/Jinja2_Code_Optimizer.md" class="prompt-link block p-4 rounded">Jinja2 Code Optimizer</a><button class="copy-btn" data-path="prompts/programming/Jinja2_Code_Optimizer.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/programming/LaTeX_specialist.md" class="prompt-link block p-4 rounded">LaTeX Specialist</a><button class="copy-btn" data-path="prompts/programming/LaTeX_specialist.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/programming/OnePageWebsite.md" class="prompt-link block p-4 rounded">One-Page Website Coder</a><button class="copy-btn" data-path="prompts/programming/OnePageWebsite.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/programming/Python.md" class="prompt-link block p-4 rounded">Python</a><button class="copy-btn" data-path="prompts/programming/Python.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/programming/PythonBugFixer.md" class="prompt-link block p-4 rounded">Python Bug Fixer</a><button class="copy-btn" data-path="prompts/programming/PythonBugFixer.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/programming/Scientific%20Data%20Visualizer.md" class="prompt-link block p-4 rounded">Scientific Data Visualizer</a><button class="copy-btn" data-path="prompts/programming/Scientific%20Data%20Visualizer.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/programming/UnstructuredText_to_JSON.md" class="prompt-link block p-4 rounded">Unstructured Text to JSON Converter</a><button class="copy-btn" data-path="prompts/programming/UnstructuredText_to_JSON.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/programming/Wolfram.md" class="prompt-link block p-4 rounded">Wolfram</a><button class="copy-btn" data-path="prompts/programming/Wolfram.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/programming/commit%20messages.md" class="prompt-link block p-4 rounded">Commit Messages</a><button class="copy-btn" data-path="prompts/programming/commit%20messages.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/programming/cursor_IDE_prompt.md" class="prompt-link block p-4 rounded">Cursor IDE Prompt</a><button class="copy-btn" data-path="prompts/programming/cursor_IDE_prompt.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/programming/priompt_style_cursor_IDE" class="prompt-link block p-4 rounded">priompt_style_cursor_IDE</a><button class="copy-btn" data-path="prompts/programming/priompt_style_cursor_IDE" aria-label="Copy prompt">Copy</button></li>
     </ul></section>
 
     <!-- PROMPT GENERATION (7) -->
     <section id="prompt_generation"><h2 class="section-heading">Prompt Generation</h2><ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-      <li><a href="prompts/prompt_generation/CoT_Probe_o3.md" class="prompt-link block p-4 rounded">CoT_Probe_o3</a></li>
-      <li><a href="prompts/prompt_generation/DALL-E.md" class="prompt-link block p-4 rounded">DALL-E</a></li>
-      <li><a href="prompts/prompt_generation/Midjourney.md" class="prompt-link block p-4 rounded">Midjourney</a></li>
-      <li><a href="prompts/prompt_generation/Prompt%20Creator.md" class="prompt-link block p-4 rounded">Prompt Creator</a></li>
-      <li><a href="prompts/prompt_generation/PromptScript.md" class="prompt-link block p-4 rounded">PromptScript</a></li>
-      <li><a href="prompts/prompt_generation/PromptScriptEngineer.md" class="prompt-link block p-4 rounded">PromptScript Engineer</a></li>
-      <li><a href="prompts/prompt_generation/ScriptingTemplate.md" class="prompt-link block p-4 rounded">BEGIN MNEMOSYNE {M}{SCRIPT}</a></li>
+      <li class="relative group"><a href="prompts/prompt_generation/CoT_Probe_o3.md" class="prompt-link block p-4 rounded">CoT_Probe_o3</a><button class="copy-btn" data-path="prompts/prompt_generation/CoT_Probe_o3.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/prompt_generation/DALL-E.md" class="prompt-link block p-4 rounded">DALL-E</a><button class="copy-btn" data-path="prompts/prompt_generation/DALL-E.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/prompt_generation/Midjourney.md" class="prompt-link block p-4 rounded">Midjourney</a><button class="copy-btn" data-path="prompts/prompt_generation/Midjourney.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/prompt_generation/Prompt%20Creator.md" class="prompt-link block p-4 rounded">Prompt Creator</a><button class="copy-btn" data-path="prompts/prompt_generation/Prompt%20Creator.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/prompt_generation/PromptScript.md" class="prompt-link block p-4 rounded">PromptScript</a><button class="copy-btn" data-path="prompts/prompt_generation/PromptScript.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/prompt_generation/PromptScriptEngineer.md" class="prompt-link block p-4 rounded">PromptScript Engineer</a><button class="copy-btn" data-path="prompts/prompt_generation/PromptScriptEngineer.md" aria-label="Copy prompt">Copy</button></li>
+      <li class="relative group"><a href="prompts/prompt_generation/ScriptingTemplate.md" class="prompt-link block p-4 rounded">BEGIN MNEMOSYNE {M}{SCRIPT}</a><button class="copy-btn" data-path="prompts/prompt_generation/ScriptingTemplate.md" aria-label="Copy prompt">Copy</button></li>
     </ul></section>
 <!-- END AUTO-GENERATED -->
   </main>
@@ -172,6 +174,22 @@
           if (show) match = true;
         });
         sec.style.display = match ? '' : 'none';
+      });
+    });
+
+    /* ---------- copy prompt ---------- */
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', async evt => {
+        evt.preventDefault();
+        const path = btn.dataset.path;
+        try {
+          const text = await fetch(path).then(r => r.text());
+          await navigator.clipboard.writeText(text);
+          btn.textContent = 'Copied!';
+        } catch {
+          btn.textContent = 'Error';
+        }
+        setTimeout(() => { btn.textContent = 'Copy'; }, 1000);
       });
     });
   </script>
