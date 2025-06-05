@@ -637,8 +637,8 @@ class PromptAnalyzer:
         print(f"\n✅ Analysis results exported to {output_file}")
 
 
-def main():
-    """Main entry point of the script."""
+def main(argv: list[str] | None = None) -> None:
+    """Entry point for command-line execution."""
     parser = argparse.ArgumentParser(description="Analyze prompt quality and provide recommendations")
     parser.add_argument("--dir", default="prompts", help="Root directory of prompts to analyze")
     parser.add_argument("--file", help="Analyze a specific file instead of the entire directory")
@@ -646,7 +646,7 @@ def main():
     parser.add_argument("--thorough", action="store_true", help="Perform more thorough analysis (slower)")
     parser.add_argument("--export", help="Export results to the specified JSON file")
     parser.add_argument("-v", "--verbose", action="store_true", help="Print detailed information")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     if not NLTK_AVAILABLE:
         print("⚠️  Warning: NLTK library not found. Some advanced analysis features will be limited.")

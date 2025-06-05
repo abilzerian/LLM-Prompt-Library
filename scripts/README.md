@@ -22,6 +22,13 @@
 
 This directory contains powerful utility scripts to help maintain and enhance the LLM Prompt Library. These tools enable you to validate, optimize, mix, analyze, and evolve prompts for maximum effectiveness.
 
+All functions are accessible through a single interface:
+
+```bash
+python scripts/llm_prompt.py <command> [options]
+```
+
+
 ---
 
 ## Available Scripts
@@ -46,16 +53,16 @@ This script validates the format and contents of prompt files to ensure they mee
 
 ```bash
 # Basic usage (checks all prompts in the prompts/ directory)
-python scripts/validate_prompts.py
+python scripts/llm_prompt.py validate
 
 # Validate prompts in a specific directory
-python scripts/validate_prompts.py --dir prompts/programming
+python scripts/llm_prompt.py validate --dir prompts/programming
 
 # Get detailed output about each file
-python scripts/validate_prompts.py -v
+python scripts/llm_prompt.py validate -v
 
 # Use strict validation mode (more rigorous checks)
-python scripts/validate_prompts.py -s
+python scripts/llm_prompt.py validate -s
 ```
 
 The validator operates in two modes:
@@ -91,23 +98,23 @@ This script allows you to create new prompts by mixing and matching elements fro
 
 ```bash
 # Basic usage (creates a random mix using elements from the prompts/ directory)
-python scripts/prompt_mixer.py
+python scripts/llm_prompt.py mix
 
 # Specify a custom title for the mixed prompt
-python scripts/prompt_mixer.py --title "My Custom Mixed Prompt"
+python scripts/llm_prompt.py mix --title "My Custom Mixed Prompt"
 
 # Mix specific elements from different prompts
-python scripts/prompt_mixer.py \
+python scripts/llm_prompt.py mix \
   --config-from "10-KAnalyzer.md" \
   --instructions-from "programming/Python.md" \
   --examples-from "writing_editing/Proofread.md" \
   --output-from "programming/Code_Explainer.md"
 
 # Specify an output file name
-python scripts/prompt_mixer.py --output-file "my_special_mix.md"
+python scripts/llm_prompt.py mix --output-file "my_special_mix.md"
 
 # Get detailed output about the mixing process
-python scripts/prompt_mixer.py -v
+python scripts/llm_prompt.py mix -v
 ```
 
 The mixer scans prompt files, extracts components, allows selection from different sources, combines them coherently, and saves the result to the `scripts/mixed_prompts/` directory with source attribution.
@@ -139,28 +146,28 @@ This script analyzes prompt files and counts tokens using various tokenization m
 
 ```bash
 # Basic usage (analyzes all prompts in the prompts/ directory)
-python scripts/token_counter.py
+python scripts/llm_prompt.py count
 
 # Analyze prompts in a specific directory
-python scripts/token_counter.py --dir prompts/programming
+python scripts/llm_prompt.py count --dir prompts/programming
 
 # Analyze a specific file
-python scripts/token_counter.py --file prompts/programming/Python.md
+python scripts/llm_prompt.py count --file prompts/programming/Python.md
 
 # Use a specific tokenizer model
-python scripts/token_counter.py --tokenizer gpt-4
+python scripts/llm_prompt.py count --tokenizer gpt-4
 
 # Skip counting tokens in code blocks
-python scripts/token_counter.py --skip-code-blocks
+python scripts/llm_prompt.py count --skip-code-blocks
 
 # Include markdown formatting in token counts
-python scripts/token_counter.py --include-markdown
+python scripts/llm_prompt.py count --include-markdown
 
 # Export results to a JSON file
-python scripts/token_counter.py --export token_stats.json
+python scripts/llm_prompt.py count --export token_stats.json
 
 # Get detailed output about each file
-python scripts/token_counter.py -v
+python scripts/llm_prompt.py count -v
 ```
 
 For accurate tokenization with OpenAI models, the script uses the `tiktoken` library. If not available, it falls back to a simple word-based approximation.
@@ -192,22 +199,22 @@ This script analyzes the quality, readability, and structure of prompts, providi
 
 ```bash
 # Basic usage (analyzes all prompts in the prompts/ directory)
-python scripts/prompt_analyzer.py
+python scripts/llm_prompt.py analyze
 
 # Analyze a specific file
-python scripts/prompt_analyzer.py --file prompts/programming/Python.md
+python scripts/llm_prompt.py analyze --file prompts/programming/Python.md
 
 # Get detailed output for each file
-python scripts/prompt_analyzer.py -v
+python scripts/llm_prompt.py analyze -v
 
 # Set minimum recommended examples in prompts
-python scripts/prompt_analyzer.py --min-examples 2
+python scripts/llm_prompt.py analyze --min-examples 2
 
 # Perform more thorough analysis (slower but more detailed)
-python scripts/prompt_analyzer.py --thorough
+python scripts/llm_prompt.py analyze --thorough
 
 # Export results to a JSON file
-python scripts/prompt_analyzer.py --export analysis_results.json
+python scripts/llm_prompt.py analyze --export analysis_results.json
 ```
 
 The analyzer evaluates prompts on readability, structure, clarity, and overall quality, providing detailed scores and specific recommendations for improvements.
@@ -239,22 +246,22 @@ This script implements an autonomous prompt optimization system that iteratively
 
 ```bash
 # Basic usage (requires a task description)
-python scripts/prompt_evolution.py --task "Summarize scientific papers concisely"
+python scripts/llm_prompt.py evolve --task "Summarize scientific papers concisely"
 
 # Start with an initial prompt file
-python scripts/prompt_evolution.py --task "Explain complex code" --initial-prompt prompts/programming/Code_Explainer.md
+python scripts/llm_prompt.py evolve --task "Explain complex code" --initial-prompt prompts/programming/Code_Explainer.md
 
 # Run in simulation mode (no API key needed)
-python scripts/prompt_evolution.py --task "Write poetry in the style of Emily Dickinson" --simulate
+python scripts/llm_prompt.py evolve --task "Write poetry in the style of Emily Dickinson" --simulate
 
 # Customize evolution parameters
-python scripts/prompt_evolution.py --task "Generate creative stories" --population 10 --iterations 8
+python scripts/llm_prompt.py evolve --task "Generate creative stories" --population 10 --iterations 8
 
 # Use a specific LLM model with your API key
-python scripts/prompt_evolution.py --task "Create SQL queries" --model gpt-4 --api-key YOUR_API_KEY
+python scripts/llm_prompt.py evolve --task "Create SQL queries" --model gpt-4 --api-key YOUR_API_KEY
 
 # Get detailed progress information
-python scripts/prompt_evolution.py --task "Design marketing copy" --verbose
+python scripts/llm_prompt.py evolve --task "Design marketing copy" --verbose
 ```
 
 The evolution system maintains a population of prompts that evolve across generations, generates constructive feedback, applies various transformations, and assesses prompt effectiveness using heuristics or LLM feedback.
@@ -302,10 +309,10 @@ financial_metacognition/
 
 ```bash
 # Basic Analysis
-python financial_metacognition/financial_metacognition.py --prompt-file input/prompt.txt --response-file input/response.txt --output analysis.json
+python scripts/llm_prompt.py financial-metacognition --prompt-file input/prompt.txt --response-file input/response.txt --output analysis.json
 
 # Region-Specific Analysis
-python financial_metacognition/financial_metacognition.py --prompt-file input/prompt.txt --response-file input/response.txt --region EU --output eu_analysis.json
+python scripts/llm_prompt.py financial-metacognition --prompt-file input/prompt.txt --response-file input/response.txt --region EU --output eu_analysis.json
 
 # Running the Test Script
 python financial_metacognition/examples/test_financial_metacognition.py --region US --accounting-standard GAAP

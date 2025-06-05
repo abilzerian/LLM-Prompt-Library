@@ -214,13 +214,13 @@ class PromptValidator:
             return False
 
 
-def main():
-    """Main entry point of the script."""
+def main(argv: list[str] | None = None) -> None:
+    """Entry point for command-line execution."""
     parser = argparse.ArgumentParser(description="Validate prompt files in the LLM-Prompt-Library")
     parser.add_argument("--dir", default="prompts", help="Root directory of prompts to validate")
     parser.add_argument("-v", "--verbose", action="store_true", help="Print detailed information")
     parser.add_argument("-s", "--strict", action="store_true", help="Use strict validation criteria")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     validator = PromptValidator(root_dir=args.dir, verbose=args.verbose, strict=args.strict)
     is_valid = validator.validate_all()

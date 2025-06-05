@@ -848,8 +848,8 @@ class PromptEvolution:
             print(f"Report: {report_file}")
 
 
-def main():
-    """Main entry point of the script."""
+def main(argv: list[str] | None = None) -> None:
+    """Entry point for command-line execution."""
     parser = argparse.ArgumentParser(description="Evolve and optimize prompts through automated iterations")
     parser.add_argument("--task", required=True, help="Description of the task the prompt should accomplish")
     parser.add_argument("--initial-prompt", default="", help="Path to a file containing the initial prompt (optional)")
@@ -860,7 +860,7 @@ def main():
     parser.add_argument("--api-key", help="API key for LLM service")
     parser.add_argument("--simulate", action="store_true", help="Simulate evolution without using an actual LLM API")
     parser.add_argument("-v", "--verbose", action="store_true", help="Print detailed progress information")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     # Load initial prompt if provided
     initial_prompt = ""

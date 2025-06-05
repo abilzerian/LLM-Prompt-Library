@@ -61,7 +61,7 @@ python scripts/build_index.py
 
 ⸻
 
-The library includes several tools to help you work with prompts:
+The library includes several tools to help you work with prompts. Use the unified CLI with `python scripts/llm_prompt.py <command>`:
 
 - **🔍 Prompt Validator** - Validates the format and contents of prompt files to ensure they meet our standards.
 - **🔄 Prompt Mixer** - Create new prompts by mixing and matching elements from existing prompts.

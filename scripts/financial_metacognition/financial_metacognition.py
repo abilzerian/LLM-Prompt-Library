@@ -463,8 +463,8 @@ def format_analysis_report(analysis: Dict[str, Any]) -> str:
 
     return "\n".join(report)
 
-def main():
-    """Main entry point for the script."""
+def main(argv: list[str] | None = None) -> None:
+    """Entry point for command-line execution."""
     parser = argparse.ArgumentParser(
         description="Analyze AI interpretations of financial prompts to identify biases and limitations."
     )
@@ -482,7 +482,7 @@ def main():
     output_group.add_argument("--report", type=str, help="Path to save human-readable analysis report (Markdown format)")
     output_group.add_argument("--print-report", action="store_true", help="Print the report to console")
 
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     # Validate input options
     if (args.prompt is None and args.prompt_file is None) or (args.response is None and args.response_file is None):

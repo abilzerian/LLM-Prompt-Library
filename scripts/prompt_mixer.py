@@ -318,8 +318,8 @@ class PromptMixer:
         return output_file
 
 
-def main():
-    """Main entry point of the script."""
+def main(argv: list[str] | None = None) -> None:
+    """Entry point for command-line execution."""
     parser = argparse.ArgumentParser(description="Mix and match elements from different prompt files")
     parser.add_argument("--dir", default="prompts", help="Root directory of prompts to scan")
     parser.add_argument("--output", default="scripts/mixed_prompts", help="Directory to save mixed prompts")
@@ -330,7 +330,7 @@ def main():
     parser.add_argument("--output-from", help="Source file for output guidance section")
     parser.add_argument("--output-file", help="Custom filename for the output prompt")
     parser.add_argument("-v", "--verbose", action="store_true", help="Print detailed information")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     mixer = PromptMixer(root_dir=args.dir, output_dir=args.output, verbose=args.verbose)
     mixer.scan_prompts()

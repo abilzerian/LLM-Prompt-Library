@@ -254,8 +254,8 @@ class TokenCounter:
         print(f"\n✅ Results exported to {output_file}")
 
 
-def main():
-    """Main entry point of the script."""
+def main(argv: list[str] | None = None) -> None:
+    """Entry point for command-line execution."""
     parser = argparse.ArgumentParser(description="Count tokens in prompt files")
     parser.add_argument("--dir", default="prompts", help="Root directory of prompts to analyze")
     parser.add_argument("--tokenizer", default="gpt-3.5-turbo",
@@ -267,7 +267,7 @@ def main():
                        help="Include markdown formatting in token counts")
     parser.add_argument("--export", help="Export results to the specified JSON file")
     parser.add_argument("-v", "--verbose", action="store_true", help="Print detailed information")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     # Check if tiktoken is available
     if not TIKTOKEN_AVAILABLE and args.tokenizer.startswith('gpt'):
