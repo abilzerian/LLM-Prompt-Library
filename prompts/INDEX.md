@@ -11,6 +11,7 @@
 | [miscellaneous/Custom Instructions.md](miscellaneous/Custom%20Instructions.md) | Custom Instructions |
 | [miscellaneous/MultiverseGPT.md](miscellaneous/MultiverseGPT.md) | MultiverseGPT |
 | [programming/AWS Architect.md](programming/AWS%20Architect.md) | AWS Architect |
+| [programming/Azure Architect.md](programming/Azure%20Architect.md) | Azure Architect |
 | [programming/Code_Explainer.md](programming/Code_Explainer.md) | Code Explainer (explain code in plain english) |
 | [programming/Copilot.md](programming/Copilot.md) | Copilot |
 | [programming/Data_Conversion_Specialist.md](programming/Data_Conversion_Specialist.md) | Data Conversion Specialist |
