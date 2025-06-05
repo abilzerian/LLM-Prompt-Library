@@ -13,6 +13,9 @@ import sys
 import json
 from typing import Dict
 from collections import defaultdict
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Check if tiktoken is available (for OpenAI models)
 TIKTOKEN_AVAILABLE = False
@@ -128,9 +131,8 @@ class TokenCounter:
             token_count = self.count_tokens(extracted_content)
 
             return token_count
-        except Exception as e:
-            if self.verbose:
-                print(f"Error processing {file_path}: {str(e)}")
+        except Exception:
+            logger.exception("Error processing %s", file_path)
             return 0
 
     def analyze_all(self) -> Dict[str, Dict[str, int]]:
@@ -140,7 +142,7 @@ class TokenCounter:
         Returns:
             Dictionary containing token statistics
         """
-        print(f"📊 Analyzing prompt files in {self.root_dir} using {self.tokenizer} tokenizer...")
+        logger.info("📊 Analyzing prompt files in %s using %s tokenizer...", self.root_dir, self.tokenizer)
 
         # Recursively process all markdown files
         for root, _, files in os.walk(self.root_dir):
@@ -165,7 +167,7 @@ class TokenCounter:
                     self.category_files[category] += 1
 
                     if self.verbose:
-                        print(f"📄 {relative_path}: {token_count} tokens")
+                        logger.debug("📄 %s: %s tokens", relative_path, token_count)
 
         # Prepare results
         results = {
@@ -194,12 +196,12 @@ class TokenCounter:
         Args:
             results: Results from analyze_all()
         """
-        print("\n📊 Token Usage Summary:")
-        print(f"Total files analyzed: {results['total']['files']}")
-        print(f"Total tokens: {results['total']['tokens']:,}")
-        print(f"Average tokens per file: {results['total']['avg_tokens_per_file']:.1f}")
+        logger.info("\n📊 Token Usage Summary:")
+        logger.info("Total files analyzed: %s", results['total']['files'])
+        logger.info("Total tokens: %s", f"{results['total']['tokens']:,}")
+        logger.info("Average tokens per file: %.1f", results['total']['avg_tokens_per_file'])
 
-        print("\n📂 Token Usage by Category:")
+        logger.info("\n📂 Token Usage by Category:")
         # Sort categories by token count (descending)
         sorted_categories = sorted(
             results['by_category'].items(),
@@ -207,21 +209,21 @@ class TokenCounter:
             reverse=True
         )
         for category, stats in sorted_categories:
-            print(f"{category}: {stats['tokens']:,} tokens across {stats['files']} files (avg: {stats['avg_tokens_per_file']:.1f})")
+            logger.info("%s: %s tokens across %s files (avg: %.1f)", category, f"{stats['tokens']:,}", stats['files'], stats['avg_tokens_per_file'])
 
         # Find top token-heavy files
-        print("\n🔝 Top 10 Token-Heavy Files:")
+        logger.info("\n🔝 Top 10 Token-Heavy Files:")
         sorted_files = sorted(
             results['by_file'].items(),
             key=lambda x: x[1],
             reverse=True
         )[:10]
         for file_path, token_count in sorted_files:
-            print(f"{file_path}: {token_count:,} tokens")
+            logger.info("%s: %s tokens", file_path, f"{token_count:,}")
 
         # Provide cost estimates for OpenAI models
         if self.tokenizer.startswith('gpt'):
-            print("\n💰 Estimated API Costs (per prompt):")
+            logger.info("\n💰 Estimated API Costs (per prompt):")
 
             # Approximate costs per 1K tokens (as of early 2024)
             if 'gpt-4' in self.tokenizer:
@@ -236,9 +238,9 @@ class TokenCounter:
                 output_cost = 0.002
 
             avg_tokens = results['total']['avg_tokens_per_file']
-            print(f"Average prompt cost ({self.tokenizer}):")
-            print(f"  Input only: ${(avg_tokens * input_cost / 1000):.4f}")
-            print(f"  With ~500 token response: ${(avg_tokens * input_cost / 1000) + (500 * output_cost / 1000):.4f}")
+            logger.info("Average prompt cost (%s):", self.tokenizer)
+            logger.info("  Input only: $%.4f", (avg_tokens * input_cost / 1000))
+            logger.info("  With ~500 token response: $%.4f", (avg_tokens * input_cost / 1000) + (500 * output_cost / 1000))
 
     def export_results(self, results: Dict[str, Dict[str, int]], output_file: str) -> None:
         """
@@ -251,7 +253,7 @@ class TokenCounter:
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=2)
 
-        print(f"\n✅ Results exported to {output_file}")
+        logger.info("\n✅ Results exported to %s", output_file)
 
 
 def main():
@@ -269,10 +271,13 @@ def main():
     parser.add_argument("-v", "--verbose", action="store_true", help="Print detailed information")
     args = parser.parse_args()
 
+    logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO,
+                        format="%(levelname)s: %(message)s")
+
     # Check if tiktoken is available
     if not TIKTOKEN_AVAILABLE and args.tokenizer.startswith('gpt'):
-        print("⚠️  Warning: tiktoken library not found. Results will be less accurate.")
-        print("   Install with: pip install tiktoken")
+        logger.warning("⚠️  Warning: tiktoken library not found. Results will be less accurate.")
+        logger.warning("   Install with: pip install tiktoken")
 
     counter = TokenCounter(
         root_dir=args.dir,
@@ -285,11 +290,11 @@ def main():
     if args.file:
         # Analyze a single file
         if not os.path.exists(args.file):
-            print(f"❌ Error: File not found: {args.file}")
+            logger.error("❌ Error: File not found: %s", args.file)
             sys.exit(1)
 
         token_count = counter.count_file_tokens(args.file)
-        print(f"📄 {args.file}: {token_count:,} tokens")
+        logger.info("📄 %s: %s tokens", args.file, f"{token_count:,}")
 
         # Provide cost estimates
         if args.tokenizer.startswith('gpt'):
@@ -305,9 +310,9 @@ def main():
                 input_cost = 0.0015
                 output_cost = 0.002
 
-            print(f"\n💰 Estimated API Costs ({args.tokenizer}):")
-            print(f"  Input only: ${(token_count * input_cost / 1000):.4f}")
-            print(f"  With ~500 token response: ${(token_count * input_cost / 1000) + (500 * output_cost / 1000):.4f}")
+            logger.info("\n💰 Estimated API Costs (%s):", args.tokenizer)
+            logger.info("  Input only: $%.4f", (token_count * input_cost / 1000))
+            logger.info("  With ~500 token response: $%.4f", (token_count * input_cost / 1000) + (500 * output_cost / 1000))
     else:
         # Analyze all files
         results = counter.analyze_all()

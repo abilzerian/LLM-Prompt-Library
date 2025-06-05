@@ -15,6 +15,9 @@ import time
 from typing import Dict, List, Any
 import statistics
 from datetime import datetime
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Try to import optional dependencies for LLM integration
 try:
@@ -354,8 +357,8 @@ class PromptEvolution:
                     max_tokens=1500
                 )
                 return response.content[0].text
-        except Exception as e:
-            print(f"Error generating with LLM: {str(e)}")
+        except Exception:
+            logger.exception("Error generating with LLM")
             return self._create_basic_prompt()
 
         return self._create_basic_prompt()
@@ -499,17 +502,17 @@ class PromptEvolution:
                     if 0 <= score <= 100:
                         return score / 100.0
                     else:
-                        print(f"Warning: LLM returned out-of-range score: {score}")
+                        logger.warning("LLM returned out-of-range score: %s", score)
                         return self._simulate_evaluation(prompt)
                 except (ValueError, TypeError):
-                    print("Warning: Failed to parse score from LLM response")
+                    logger.warning("Failed to parse score from LLM response")
                     return self._simulate_evaluation(prompt)
             else:
-                print("Warning: Could not find score in LLM response")
+                logger.warning("Could not find score in LLM response")
                 return self._simulate_evaluation(prompt)
 
-        except Exception as e:
-            print(f"Error evaluating with LLM: {str(e)}")
+        except Exception:
+            logger.exception("Error evaluating with LLM")
             return self._simulate_evaluation(prompt)
 
     def generate_mutations(self, prompt_dict: Dict[str, Any], num_mutations: int = 2) -> List[Dict[str, Any]]:
@@ -672,8 +675,8 @@ class PromptEvolution:
             else:
                 return self._create_variation(prompt)
 
-        except Exception as e:
-            print(f"Error mutating with LLM: {str(e)}")
+        except Exception:
+            logger.exception("Error mutating with LLM")
             return self._create_variation(prompt)
 
     def create_next_generation(self) -> List[Dict[str, Any]]:
@@ -739,7 +742,7 @@ class PromptEvolution:
             self.current_generation = iteration + 1
 
             if self.verbose:
-                print(f"\n--- Generation {self.current_generation} ---")
+                logger.debug("\n--- Generation %s ---", self.current_generation)
 
             # Evaluate current population
             for prompt_dict in self.population:
@@ -748,7 +751,7 @@ class PromptEvolution:
                     prompt_dict["score"] = score
 
                     if self.verbose:
-                        print(f"Prompt {prompt_dict['id']}: score = {score:.3f}")
+                        logger.debug("Prompt %s: score = %.3f", prompt_dict['id'], score)
 
                     # Update best prompt if better
                     if score > self.best_score:
@@ -756,7 +759,7 @@ class PromptEvolution:
                         self.best_prompt = prompt_dict.copy()
 
                         if self.verbose:
-                            print(f"New best prompt found! Score: {score:.3f}")
+                            logger.debug("New best prompt found! Score: %.3f", score)
 
             # Record generation stats
             gen_stats = {
@@ -842,10 +845,10 @@ class PromptEvolution:
             f.write("\n```\n")
 
         if self.verbose:
-            print(f"\nResults saved to {self.output_dir}/")
-            print(f"Best prompt: {best_prompt_file}")
-            print(f"Evolution data: {evolution_data_file}")
-            print(f"Report: {report_file}")
+            logger.debug("\nResults saved to %s/", self.output_dir)
+            logger.debug("Best prompt: %s", best_prompt_file)
+            logger.debug("Evolution data: %s", evolution_data_file)
+            logger.debug("Report: %s", report_file)
 
 
 def main():
@@ -862,6 +865,9 @@ def main():
     parser.add_argument("-v", "--verbose", action="store_true", help="Print detailed progress information")
     args = parser.parse_args()
 
+    logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO,
+                        format="%(levelname)s: %(message)s")
+
     # Load initial prompt if provided
     initial_prompt = ""
     if args.initial_prompt and os.path.exists(args.initial_prompt):
@@ -871,19 +877,19 @@ def main():
     # Check if required APIs are available
     if not args.simulate:
         if not OPENAI_AVAILABLE and not ANTHROPIC_AVAILABLE:
-            print("Warning: Neither OpenAI nor Anthropic libraries are available.")
-            print("Install them with: pip install openai anthropic")
-            print("Falling back to simulation mode.")
+            logger.warning("Neither OpenAI nor Anthropic libraries are available.")
+            logger.warning("Install them with: pip install openai anthropic")
+            logger.warning("Falling back to simulation mode.")
             args.simulate = True
         elif args.model.startswith("gpt") and not OPENAI_AVAILABLE:
-            print("Warning: OpenAI library not available but GPT model selected.")
-            print("Install with: pip install openai")
-            print("Falling back to simulation mode.")
+            logger.warning("OpenAI library not available but GPT model selected.")
+            logger.warning("Install with: pip install openai")
+            logger.warning("Falling back to simulation mode.")
             args.simulate = True
         elif args.model.startswith("claude") and not ANTHROPIC_AVAILABLE:
-            print("Warning: Anthropic library not available but Claude model selected.")
-            print("Install with: pip install anthropic")
-            print("Falling back to simulation mode.")
+            logger.warning("Anthropic library not available but Claude model selected.")
+            logger.warning("Install with: pip install anthropic")
+            logger.warning("Falling back to simulation mode.")
             args.simulate = True
 
     # Create and run the prompt evolution
@@ -898,17 +904,17 @@ def main():
         api_key=args.api_key
     )
 
-    print(f"Starting prompt evolution for task: {args.task}")
-    print(f"Using model: {args.model if not args.simulate else 'Simulation mode'}")
-    print(f"Population size: {args.population}, Max iterations: {args.iterations}")
+    logger.info("Starting prompt evolution for task: %s", args.task)
+    logger.info("Using model: %s", args.model if not args.simulate else "Simulation mode")
+    logger.info("Population size: %s, Max iterations: %s", args.population, args.iterations)
 
     results = evolution.evolve()
 
-    print("\n=== Evolution Complete ===")
-    print(f"Best prompt score: {results['best_prompt']['score']:.3f}")
-    print(f"Improvement: {results['evolution_stats']['improvement']:.3f}")
-    print(f"Evolved over {results['evolution_stats']['generations']} generations")
-    print(f"Results saved to {args.output_dir}/")
+    logger.info("\n=== Evolution Complete ===")
+    logger.info("Best prompt score: %.3f", results['best_prompt']['score'])
+    logger.info("Improvement: %.3f", results['evolution_stats']['improvement'])
+    logger.info("Evolved over %s generations", results['evolution_stats']['generations'])
+    logger.info("Results saved to %s/", args.output_dir)
 
 
 if __name__ == "__main__":

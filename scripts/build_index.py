@@ -7,7 +7,10 @@ Run from repo root:  python scripts/build_index.py
 import pathlib
 import re
 import textwrap
+import logging
 from urllib.parse import quote
+
+logger = logging.getLogger(__name__)
 
 README_FILE = pathlib.Path("README.md")
 
@@ -117,6 +120,7 @@ def update_readme(table_rows: str) -> None:
     README_FILE.write_text(new_text, encoding="utf-8")
 
 def main() -> None:
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
     files = sorted(PROMPTS_DIR.rglob("*.md"))
     rows  = []
     for f in files:
@@ -134,7 +138,7 @@ def main() -> None:
         |------|-------|
     """)
     INDEX_FILE.write_text(header + "\n".join(rows) + "\n", encoding="utf‑8")
-    print(f"Generated {INDEX_FILE} with {len(rows)} entries")
+    logger.info("Generated %s with %s entries", INDEX_FILE, len(rows))
 
     table = build_catalogue_table()
     update_readme(table)

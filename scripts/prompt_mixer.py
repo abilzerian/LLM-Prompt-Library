@@ -12,6 +12,9 @@ import argparse
 import random
 import datetime
 from typing import Dict, Optional
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class PromptElement:
@@ -150,13 +153,13 @@ class PromptParser:
                                                              'default')
 
             if self.verbose:
-                print(f"Parsed {relative_path}, found elements: {', '.join(elements.keys())}")
+                logger.debug("Parsed %s, found elements: %s", relative_path, ', '.join(elements.keys()))
 
             return elements
 
-        except Exception as e:
+        except Exception:
             if self.verbose:
-                print(f"Error parsing {file_path}: {str(e)}")
+                logger.exception("Error parsing %s", file_path)
             return {}
 
 
@@ -179,7 +182,7 @@ class PromptMixer:
 
     def scan_prompts(self) -> None:
         """Scan all prompt files and extract their elements."""
-        print(f"🔍 Scanning prompt files in {self.root_dir}...")
+        logger.info("🔍 Scanning prompt files in %s...", self.root_dir)
 
         # Recursively find all markdown files
         for root, _, files in os.walk(self.root_dir):
@@ -193,9 +196,9 @@ class PromptMixer:
                         self.elements_by_type[element_type].append(element)
 
         # Print summary
-        print("\n📊 Scan Summary:")
+        logger.info("\n📊 Scan Summary:")
         for element_type, elements in self.elements_by_type.items():
-            print(f"{element_type}: {len(elements)} elements found")
+            logger.info("%s: %s elements found", element_type, len(elements))
 
     def create_mixed_prompt(self,
                            title: Optional[str] = None,
@@ -267,7 +270,7 @@ class PromptMixer:
 
                 if not found:
                     if self.verbose:
-                        print(f"⚠️ Could not find {element_type} from {source_var}, using random selection")
+                        logger.debug("⚠️ Could not find %s from %s, using random selection", element_type, source_var)
                     if elements:
                         selected_elements[element_type] = random.choice(elements)
             else:
@@ -276,7 +279,7 @@ class PromptMixer:
 
         # Ensure we have instructions
         if 'instructions' not in selected_elements or not selected_elements['instructions'].content.strip():
-            print("⚠️ No valid instructions found. This is a required element. Exiting.")
+            logger.warning("⚠️ No valid instructions found. This is a required element. Exiting.")
             return None
 
         # Build the mixed prompt content
@@ -314,7 +317,7 @@ class PromptMixer:
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write(content)
 
-        print(f"✅ Created mixed prompt: {output_file}")
+        logger.info("✅ Created mixed prompt: %s", output_file)
         return output_file
 
 
@@ -331,6 +334,9 @@ def main():
     parser.add_argument("--output-file", help="Custom filename for the output prompt")
     parser.add_argument("-v", "--verbose", action="store_true", help="Print detailed information")
     args = parser.parse_args()
+
+    logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO,
+                        format="%(levelname)s: %(message)s")
 
     mixer = PromptMixer(root_dir=args.dir, output_dir=args.output, verbose=args.verbose)
     mixer.scan_prompts()

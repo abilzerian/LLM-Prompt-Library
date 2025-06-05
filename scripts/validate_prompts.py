@@ -10,6 +10,9 @@ import os
 import re
 import argparse
 import sys
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class PromptValidator:
@@ -25,7 +28,7 @@ class PromptValidator:
 
     def validate_all(self) -> bool:
         """Validate all prompt files in the repository."""
-        print(f"🔍 Validating prompt files in {self.root_dir}...")
+        logger.info("🔍 Validating prompt files in %s...", self.root_dir)
 
         # Recursively find all markdown files
         for root, _, files in os.walk(self.root_dir):
@@ -35,23 +38,23 @@ class PromptValidator:
                     self._validate_file(file_path)
 
         # Print summary
-        print("\n📊 Validation Summary:")
-        print(f"Total files checked: {self.valid_files + self.invalid_files}")
-        print(f"Valid files: {self.valid_files}")
-        print(f"Invalid files: {self.invalid_files}")
+        logger.info("\n📊 Validation Summary:")
+        logger.info("Total files checked: %s", self.valid_files + self.invalid_files)
+        logger.info("Valid files: %s", self.valid_files)
+        logger.info("Invalid files: %s", self.invalid_files)
 
         if self.warnings:
-            print("\n⚠️ Warnings (not failures):")
+            logger.info("\n⚠️ Warnings (not failures):")
             for warning in self.warnings:
-                print(f"- {warning}")
+                logger.info("- %s", warning)
 
         if self.invalid_files > 0:
-            print("\n❌ Issues found:")
+            logger.info("\n❌ Issues found:")
             for issue in self.issues:
-                print(f"- {issue}")
+                logger.info("- %s", issue)
             return False
 
-        print("\n✅ All prompt files are valid!")
+        logger.info("\n✅ All prompt files are valid!")
         return True
 
     def _validate_file(self, file_path: str) -> bool:
@@ -193,15 +196,15 @@ class PromptValidator:
 
                 if self.verbose:
                     if file_warnings:
-                        print(f"⚠️ {relative_path}: Valid with warnings")
+                        logger.debug("⚠️ %s: Valid with warnings", relative_path)
                     else:
-                        print(f"✅ {relative_path}: Valid")
+                        logger.debug("✅ %s: Valid", relative_path)
             else:
                 self.invalid_files += 1
                 issue_str = f"{relative_path}: {', '.join(file_issues)}"
                 self.issues.append(issue_str)
                 if self.verbose:
-                    print(f"❌ {issue_str}")
+                    logger.debug("❌ %s", issue_str)
 
             return is_valid
 
@@ -210,7 +213,7 @@ class PromptValidator:
             issue_str = f"{relative_path}: Error reading/parsing file - {str(e)}"
             self.issues.append(issue_str)
             if self.verbose:
-                print(f"❌ {issue_str}")
+                logger.debug("❌ %s", issue_str)
             return False
 
 
@@ -221,6 +224,9 @@ def main():
     parser.add_argument("-v", "--verbose", action="store_true", help="Print detailed information")
     parser.add_argument("-s", "--strict", action="store_true", help="Use strict validation criteria")
     args = parser.parse_args()
+
+    logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO,
+                        format="%(levelname)s: %(message)s")
 
     validator = PromptValidator(root_dir=args.dir, verbose=args.verbose, strict=args.strict)
     is_valid = validator.validate_all()

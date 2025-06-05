@@ -14,6 +14,9 @@ import statistics
 from collections import defaultdict, Counter
 from typing import Dict, List, Tuple, Any
 import random
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Check if nltk is available (for advanced text analysis)
 NLTK_AVAILABLE = False
@@ -459,8 +462,7 @@ class PromptAnalyzer:
             return result
 
         except Exception as e:
-            if self.verbose:
-                print(f"Error analyzing {file_path}: {str(e)}")
+            logger.exception("Error analyzing %s", file_path)
             return {"error": str(e)}
 
     def analyze_all(self) -> Dict[str, Any]:
@@ -470,7 +472,7 @@ class PromptAnalyzer:
         Returns:
             Analysis results for all prompts
         """
-        print(f"🔍 Analyzing prompt files in {self.root_dir}...")
+        logger.info("🔍 Analyzing prompt files in %s...", self.root_dir)
 
         # Results storage
         results = {
@@ -509,8 +511,7 @@ class PromptAnalyzer:
 
                     # Skip files with errors
                     if "error" in analysis:
-                        if self.verbose:
-                            print(f"❌ Error analyzing {relative_path}: {analysis['error']}")
+                        logger.error("❌ Error analyzing %s: %s", relative_path, analysis["error"])
                         continue
 
                     # Update the relative path
@@ -541,7 +542,7 @@ class PromptAnalyzer:
                             quality_marker = "🟡"
                         else:
                             quality_marker = "🔴"
-                        print(f"{quality_marker} {relative_path}: Quality score: {quality:.1f}")
+                        logger.debug("%s %s: Quality score: %.1f", quality_marker, relative_path, quality)
 
         # Calculate statistics
         if quality_scores:
@@ -585,43 +586,43 @@ class PromptAnalyzer:
         prompts = results["prompts"]
         categories = results["categories"]
 
-        print("\n📊 Prompt Quality Summary:")
-        print(f"Total prompts analyzed: {summary['total_prompts']}")
-        print(f"Average quality score: {summary['avg_quality']}/100")
-        print(f"  - Readability: {summary['avg_readability']}/100")
-        print(f"  - Structure: {summary['avg_structure']}/100")
-        print(f"  - Clarity: {summary['avg_clarity']}/100")
+        logger.info("\n📊 Prompt Quality Summary:")
+        logger.info("Total prompts analyzed: %s", summary['total_prompts'])
+        logger.info("Average quality score: %s/100", summary['avg_quality'])
+        logger.info("  - Readability: %s/100", summary['avg_readability'])
+        logger.info("  - Structure: %s/100", summary['avg_structure'])
+        logger.info("  - Clarity: %s/100", summary['avg_clarity'])
 
         # Print quality distribution
-        print("\nQuality score distribution:")
-        print(f"  - 25% of prompts score below: {summary['quality_percentiles']['25th']}")
-        print(f"  - 50% of prompts score below: {summary['quality_percentiles']['50th']} (median)")
-        print(f"  - 75% of prompts score below: {summary['quality_percentiles']['75th']}")
+        logger.info("\nQuality score distribution:")
+        logger.info("  - 25% of prompts score below: %s", summary['quality_percentiles']['25th'])
+        logger.info("  - 50% of prompts score below: %s (median)", summary['quality_percentiles']['50th'])
+        logger.info("  - 75% of prompts score below: %s", summary['quality_percentiles']['75th'])
 
         # Print category stats
-        print("\n📂 Quality by Category:")
+        logger.info("\n📂 Quality by Category:")
         sorted_categories = sorted(
             categories.items(),
             key=lambda x: x[1]["avg_quality"],
             reverse=True
         )
         for category, stats in sorted_categories:
-            print(f"{category}: {stats['avg_quality']}/100 (across {stats['count']} prompts)")
+            logger.info("%s: %s/100 (across %s prompts)", category, stats['avg_quality'], stats['count'])
 
         # Top 5 highest quality prompts
-        print("\n🏆 Top 5 Highest Quality Prompts:")
+        logger.info("\n🏆 Top 5 Highest Quality Prompts:")
         sorted_prompts = sorted(prompts, key=lambda x: x["scores"]["quality"], reverse=True)[:5]
         for prompt in sorted_prompts:
-            print(f"{prompt['file']}: {prompt['scores']['quality']}/100")
+            logger.info("%s: %s/100", prompt['file'], prompt['scores']['quality'])
 
         # Bottom 5 prompts (needs improvement)
-        print("\n🔧 5 Prompts That Need Improvement:")
+        logger.info("\n🔧 5 Prompts That Need Improvement:")
         sorted_prompts = sorted(prompts, key=lambda x: x["scores"]["quality"])[:5]
         for prompt in sorted_prompts:
-            print(f"{prompt['file']}: {prompt['scores']['quality']}/100")
+            logger.info("%s: %s/100", prompt['file'], prompt['scores']['quality'])
             if "recommendations" in prompt:
                 for i, rec in enumerate(prompt["recommendations"], 1):
-                    print(f"  {i}. {rec}")
+                    logger.info("  %s. %s", i, rec)
 
     def export_results(self, results: Dict[str, Any], output_file: str) -> None:
         """
@@ -634,7 +635,7 @@ class PromptAnalyzer:
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=2)
 
-        print(f"\n✅ Analysis results exported to {output_file}")
+        logger.info("\n✅ Analysis results exported to %s", output_file)
 
 
 def main():
@@ -648,9 +649,12 @@ def main():
     parser.add_argument("-v", "--verbose", action="store_true", help="Print detailed information")
     args = parser.parse_args()
 
+    logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO,
+                        format="%(levelname)s: %(message)s")
+
     if not NLTK_AVAILABLE:
-        print("⚠️  Warning: NLTK library not found. Some advanced analysis features will be limited.")
-        print("   Install with: pip install nltk")
+        logger.warning("⚠️  Warning: NLTK library not found. Some advanced analysis features will be limited.")
+        logger.warning("   Install with: pip install nltk")
 
     analyzer = PromptAnalyzer(
         root_dir=args.dir,
@@ -662,42 +666,42 @@ def main():
     if args.file:
         # Analyze a single file
         if not os.path.exists(args.file):
-            print(f"❌ Error: File not found: {args.file}")
+            logger.error("❌ Error: File not found: %s", args.file)
             return
 
-        print(f"🔍 Analyzing {args.file}...")
+        logger.info("🔍 Analyzing %s...", args.file)
         analysis = analyzer.analyze_prompt(args.file)
 
         # Pretty print the results
-        print("\n📊 Analysis Results:")
-        print(f"Title: {analysis.get('title', 'No title found')}")
-        print("\nScores:")
-        print(f"  - Readability: {analysis['scores']['readability']}/100")
-        print(f"  - Structure: {analysis['scores']['structure']}/100")
-        print(f"  - Clarity: {analysis['scores']['clarity']}/100")
-        print(f"  - Overall Quality: {analysis['scores']['quality']}/100")
+        logger.info("\n📊 Analysis Results:")
+        logger.info("Title: %s", analysis.get('title', 'No title found'))
+        logger.info("\nScores:")
+        logger.info("  - Readability: %s/100", analysis['scores']['readability'])
+        logger.info("  - Structure: %s/100", analysis['scores']['structure'])
+        logger.info("  - Clarity: %s/100", analysis['scores']['clarity'])
+        logger.info("  - Overall Quality: %s/100", analysis['scores']['quality'])
 
-        print("\nMetadata:")
-        print(f"  - Word count: {analysis['metadata']['word_count']}")
-        print(f"  - Examples: {analysis['metadata']['example_count']}")
-        print(f"  - Code blocks: {analysis['metadata']['code_block_count']}")
-        print(f"  - Configuration options: {len(analysis['metadata'].get('config_options', []))}")
+        logger.info("\nMetadata:")
+        logger.info("  - Word count: %s", analysis['metadata']['word_count'])
+        logger.info("  - Examples: %s", analysis['metadata']['example_count'])
+        logger.info("  - Code blocks: %s", analysis['metadata']['code_block_count'])
+        logger.info("  - Configuration options: %s", len(analysis['metadata'].get('config_options', [])))
 
         if "keywords" in analysis:
-            print("\nTop Keywords:")
+            logger.info("\nTop Keywords:")
             for keyword, count in analysis["keywords"]:
-                print(f"  - {keyword}: {count} occurrences")
+                logger.info("  - %s: %s occurrences", keyword, count)
 
         if "recommendations" in analysis:
-            print("\n💡 Recommendations for Improvement:")
+            logger.info("\n💡 Recommendations for Improvement:")
             for i, rec in enumerate(analysis["recommendations"], 1):
-                print(f"{i}. {rec}")
+                logger.info("%s. %s", i, rec)
 
         # Export if requested
         if args.export:
             with open(args.export, 'w', encoding='utf-8') as f:
                 json.dump(analysis, f, indent=2)
-            print(f"\n✅ Analysis exported to {args.export}")
+            logger.info("\n✅ Analysis exported to %s", args.export)
     else:
         # Analyze all files
         results = analyzer.analyze_all()
