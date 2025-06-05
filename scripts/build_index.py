@@ -53,21 +53,30 @@ def build_site_sections() -> str:
                 rel = f.relative_to(PROMPTS_DIR).as_posix()
                 url = quote(f"prompts/{rel}", safe="/")
                 text = extract_title(f)
+                local = True
             else:
-                first = f.read_text(encoding="utf-8").strip().splitlines()[0]
-                m = re.match(r"\[(.+?)\]\((.+?)\)", first)
+                first = f.read_text(encoding='utf-8').strip().splitlines()[0]
+                m = re.match(r'\[(.+?)\]\((.+?)\)', first)
                 if m:
                     text, url = m.groups()
+                    local = not url.startswith('http')
                 else:
                     text = f.stem
                     rel = f.relative_to(PROMPTS_DIR).as_posix()
                     url = quote(f"prompts/{rel}", safe="/")
-            sections.append(
-                "      <li class=\"relative group\">"
-                f"<a href=\"{url}\" class=\"prompt-link block p-4 rounded\">{text}</a>"
-                f"<button class=\"copy-btn\" data-path=\"{url}\" aria-label=\"Copy prompt\">Copy</button>"
-                "</li>"
-            )
+                    local = True
+
+            link_attrs = [f"href=\"{url}\""]
+            if url.startswith('http'):
+                link_attrs.append('target=\"_blank\" rel=\"noopener noreferrer\"')
+
+            link = f"<a {' '.join(link_attrs)} class=\"prompt-link block p-4 rounded\">{text}</a>"
+
+            parts = ["      <li class=\"relative group\">", link]
+            if local:
+                parts.append(f"<button class=\"copy-btn\" data-path=\"{url}\" aria-label=\"Copy prompt\">Copy</button>")
+            parts.append('</li>')
+            sections.append(''.join(parts))
         sections.append("    </ul></section>")
         sections.append("")
     return "\n".join(sections).rstrip()
