@@ -11,7 +11,7 @@ import re
 import argparse
 import sys
 import json
-from typing import Dict, List, Optional, Tuple
+from typing import Dict
 from collections import defaultdict
 
 # Check if tiktoken is available (for OpenAI models)
@@ -23,7 +23,7 @@ except ImportError:
     pass
 
 class TokenCounter:
-    """Class for counting tokens in prompt files."""
+    """Utility for counting tokens in prompt files."""
     
     def __init__(self, 
                  root_dir: str = "prompts", 
@@ -49,7 +49,7 @@ class TokenCounter:
         
         # Initialize tokenizer
         self.tiktoken_encoder = None
-        if TIKTOKEN_AVAILABLE and tokenizer.startswith('gpt'):
+        if TIKTOKEN_AVAILABLE and tokenizer.startswith("gpt"):
             try:
                 self.tiktoken_encoder = tiktoken.encoding_for_model(tokenizer)
             except KeyError:
@@ -62,6 +62,48 @@ class TokenCounter:
         self.file_tokens = {}
         self.category_tokens = defaultdict(int)
         self.category_files = defaultdict(int)
+
+    def _iter_prompt_files(self):
+        """Yield Markdown prompt files with their relative path and category."""
+        for root, _, files in os.walk(self.root_dir):
+            for name in files:
+                if not name.endswith(".md"):
+                    continue
+                file_path = os.path.join(root, name)
+                relative_path = os.path.relpath(file_path, start=os.getcwd())
+                category = os.path.relpath(root, self.root_dir).split(os.path.sep)[0]
+                if category == ".":
+                    category = "root"
+                yield file_path, relative_path, category
+
+    def _update_stats(self, rel_path: str, category: str, token_count: int) -> None:
+        """Update cumulative statistics for a processed file."""
+        self.total_files += 1
+        self.total_tokens += token_count
+        self.file_tokens[rel_path] = token_count
+        self.category_tokens[category] += token_count
+        self.category_files[category] += 1
+        if self.verbose:
+            print(f"📄 {rel_path}: {token_count} tokens")
+
+    def _build_results(self) -> Dict[str, Dict[str, int]]:
+        """Assemble results dictionary from collected statistics."""
+        return {
+            "total": {
+                "files": self.total_files,
+                "tokens": self.total_tokens,
+                "avg_tokens_per_file": self.total_tokens / self.total_files if self.total_files else 0,
+            },
+            "by_category": {
+                category: {
+                    "files": self.category_files[category],
+                    "tokens": tokens,
+                    "avg_tokens_per_file": tokens / self.category_files[category],
+                }
+                for category, tokens in self.category_tokens.items()
+            },
+            "by_file": self.file_tokens,
+        }
     
     def count_tokens(self, text: str) -> int:
         """
@@ -93,9 +135,9 @@ class TokenCounter:
         """
         # Extract the main prompt content
         if not self.include_markdown:
-            # Remove markdown formatting like headers, lists, etc.
+            # Strip common markdown constructs
             content = re.sub(r'^#+\s+.*$', '', file_content, flags=re.MULTILINE)  # Headers
-            content = re.sub(r'^[*-]\s+.*$', '', content, flags=re.MULTILINE)     # List items
+            content = re.sub(r'^[*-]\s+.*$', '', content, flags=re.MULTILINE)     # Lists
             content = re.sub(r'[*_]{1,2}([^*_]+)[*_]{1,2}', r'\1', content)       # Bold/italic
         else:
             content = file_content
@@ -136,56 +178,19 @@ class TokenCounter:
     def analyze_all(self) -> Dict[str, Dict[str, int]]:
         """
         Analyze all prompt files and generate token count statistics.
-        
+
         Returns:
             Dictionary containing token statistics
         """
-        print(f"📊 Analyzing prompt files in {self.root_dir} using {self.tokenizer} tokenizer...")
-        
-        # Recursively process all markdown files
-        for root, _, files in os.walk(self.root_dir):
-            for file in files:
-                if file.endswith(".md"):
-                    file_path = os.path.join(root, file)
-                    relative_path = os.path.relpath(file_path, start=os.getcwd())
-                    
-                    # Get the category from the directory structure
-                    category = os.path.relpath(root, self.root_dir).split(os.path.sep)[0]
-                    if category == '.':
-                        category = 'root'
-                    
-                    # Count tokens
-                    token_count = self.count_file_tokens(file_path)
-                    
-                    # Update stats
-                    self.total_files += 1
-                    self.total_tokens += token_count
-                    self.file_tokens[relative_path] = token_count
-                    self.category_tokens[category] += token_count
-                    self.category_files[category] += 1
-                    
-                    if self.verbose:
-                        print(f"📄 {relative_path}: {token_count} tokens")
-        
-        # Prepare results
-        results = {
-            'total': {
-                'files': self.total_files,
-                'tokens': self.total_tokens,
-                'avg_tokens_per_file': self.total_tokens / self.total_files if self.total_files > 0 else 0
-            },
-            'by_category': {
-                category: {
-                    'files': self.category_files[category],
-                    'tokens': token_count,
-                    'avg_tokens_per_file': token_count / self.category_files[category]
-                }
-                for category, token_count in self.category_tokens.items()
-            },
-            'by_file': self.file_tokens
-        }
-        
-        return results
+        print(
+            f"📊 Analyzing prompt files in {self.root_dir} using {self.tokenizer} tokenizer..."
+        )
+
+        for file_path, rel_path, category in self._iter_prompt_files():
+            token_count = self.count_file_tokens(file_path)
+            self._update_stats(rel_path, category, token_count)
+
+        return self._build_results()
     
     def print_summary(self, results: Dict[str, Dict[str, int]]) -> None:
         """
@@ -318,4 +323,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main() 
+    main()
