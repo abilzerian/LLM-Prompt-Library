@@ -62,6 +62,17 @@ class TokenCounter:
         self.file_tokens = {}
         self.category_tokens = defaultdict(int)
         self.category_files = defaultdict(int)
+
+    def _safe_read(self, file_path: str) -> str:
+        """Return file contents trying multiple encodings."""
+        for enc in ("utf-8", "utf-8-sig", "latin-1"):
+            try:
+                with open(file_path, "r", encoding=enc) as f:
+                    return f.read()
+            except UnicodeDecodeError:
+                continue
+        with open(file_path, "rb") as f:
+            return f.read().decode("utf-8", errors="ignore")
     
     def count_tokens(self, text: str) -> int:
         """
@@ -118,8 +129,7 @@ class TokenCounter:
             Number of tokens in the file
         """
         try:
-            with open(file_path, 'r', encoding='utf-8') as f:
-                content = f.read()
+            content = self._safe_read(file_path)
             
             # Extract the relevant content
             extracted_content = self.extract_content(content)

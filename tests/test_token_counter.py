@@ -1,4 +1,3 @@
-import pytest
 from scripts.token_counter import TokenCounter
 
 
@@ -23,3 +22,10 @@ def test_extract_content_remove_code_block():
 def test_count_tokens_fallback():
     tc = TokenCounter(tokenizer="other")
     assert tc.count_tokens("hello world") == 2
+
+
+def test_count_file_tokens_fallback_encoding(tmp_path):
+    file = tmp_path / "latin1.md"
+    file.write_bytes(b"caf\xe9 content")
+    tc = TokenCounter(tokenizer="other")
+    assert tc.count_file_tokens(str(file)) == 2
