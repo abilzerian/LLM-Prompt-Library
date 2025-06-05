@@ -1,4 +1,3 @@
-import pytest
 from scripts.token_counter import TokenCounter
 
 

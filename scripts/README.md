@@ -72,6 +72,7 @@ If issues are found, the script provides a detailed report and exits with a non-
   </a>
 </div>
 
+
 ### 2. Prompt Mixer <a name="prompt-mixer"></a> <img src="https://img.shields.io/badge/Status-Active-success" alt="Status">
 
 <details>
@@ -329,6 +330,28 @@ python -m spacy download en_core_web_lg
     <img src="https://img.shields.io/badge/⬆️-Back_to_Top-orange" alt="Back to Top">
   </a>
 </div>
+
+### 7. Cognitive Security <a name="cognitive-security"></a> <img src="https://img.shields.io/badge/Status-Alpha-lightgrey" alt="Status">
+
+<details>
+<summary>Click to expand cognitive security details</summary>
+
+This lightweight tool scans text for manipulation tactics and persuasive triggers. It outputs a JSON summary of risky language categories.
+
+#### Features
+
+- 🛡️ Detection of fear, uncertainty & doubt terms
+- 🛡️ Urgency phrase spotting
+- 🛡️ Loaded language identification
+
+#### Usage
+
+```bash
+python cognitive_security/cognitive_security.py --text "Your text here"
+python cognitive_security/cognitive_security.py --file path/to/file.txt
+```
+
+</details>
 
 ## Directories
 

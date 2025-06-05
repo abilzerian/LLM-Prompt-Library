@@ -1,0 +1,5 @@
+{
+  "fud": ["fear", "uncertain", "uncertainty", "doubt", "panic"],
+  "urgency": ["act now", "limited time", "don't miss", "urgent"],
+  "loaded_language": ["catastrophic", "miracle", "shocking", "unbelievable"]
+}
