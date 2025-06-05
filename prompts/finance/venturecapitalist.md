@@ -1,4 +1,9 @@
 # Act as a venture capitalist
+
+## Purpose
+Perform investor-style diligence on a startup.
+
+## Instructions
 ```markdown
 Act as a venture capitalist and conduct a comprehensive analysis of [Company]. In addition to any attached PitchBook outputs, documents, and decks, gather data from credible sources such as public filings, industry reports, and market research to compile an in-depth report. Begin by providing an overview of the company, including when it was founded, the problem it solves, its value proposition, and why now is an opportune time for its success.
 

@@ -1,5 +1,9 @@
 # 10-K Analyzer
 
+## Purpose
+Summarize and analyze SEC 10-K filings.
+
+## Instructions
 ```markdown
 `reset`
 `no quotes`

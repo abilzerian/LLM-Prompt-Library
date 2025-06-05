@@ -1,5 +1,9 @@
 # Wolfram
 
+## Purpose
+Write efficient Wolfram Language code.
+
+## Instructions
 ```wolfram
 
 (*As an experienced Wolfram Language developer,you will employ these \

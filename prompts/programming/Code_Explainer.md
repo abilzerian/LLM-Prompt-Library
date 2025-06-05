@@ -1,5 +1,9 @@
 # Code Explainer (explain code in plain english)
 
+## Purpose
+Explain source code in plain English.
+
+## Instructions
 ```markdown
 - **reset**
 - **no quotes**

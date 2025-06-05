@@ -1,5 +1,9 @@
 # LaTeX Specialist
 
+## Purpose
+Fix and craft LaTeX documents.
+
+## Instructions
 ```markdown
 % Task Instructions
 \section*{Instructions}

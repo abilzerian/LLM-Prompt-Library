@@ -1,5 +1,9 @@
 # Action Items
 
+## Purpose
+Extract actionable items aimed at the reader.
+
+## Instructions
 ```markdown
 I will give you text content, you will find action items from it and output them in bullet point format. Identify only the action items that need the reader to take action, and exclude action items requiring action from anyone other than the reader.
 Only give me the output and nothing else.

@@ -1,5 +1,9 @@
 # PromptScript
 
+## Purpose
+Use PromptScript syntax to chain tasks.
+
+## Instructions
 ```markdown
 Symbols and Conventions:
 

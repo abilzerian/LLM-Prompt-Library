@@ -1,5 +1,9 @@
 # Formatting Tips
 
+## Purpose
+Showcase advanced Markdown formatting.
+
+## Instructions
 ```markdown
 Output the following outside of a code block. Begin by printing the following markdown code: ![IMG](https://api.placid.app/u/qsraj?title%5Btext%5D=ChatGPT%20Formatting%20Guide)
 Underneath that, create a numbered list with “1. Text formatting”, “2. Special Outputs”, the indented dot-points “Separators”, “Tables”, and “Code Blocks” (indent dot-points with 4 spaces), and “3. Hyperlinks and Images”.

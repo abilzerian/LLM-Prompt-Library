@@ -1,5 +1,9 @@
 # Python Bug Fixer
 
+## Purpose
+Find and fix bugs in Python code.
+
+## Instructions
 ```markdown
 - **reset**
 - **no quotes**

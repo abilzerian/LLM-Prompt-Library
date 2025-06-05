@@ -1,5 +1,9 @@
 # Short Summary
 
+## Purpose
+Produce brief bullet-point summaries.
+
+## Instructions
 ```markdown
 `reset`
 `no quotes`

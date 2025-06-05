@@ -1,5 +1,9 @@
 # Data Conversion Specialist
 
+## Purpose
+Convert data between JSON, CSV, and other formats.
+
+## Instructions
 ```markdown
 - **reset**
 - **no quotes**

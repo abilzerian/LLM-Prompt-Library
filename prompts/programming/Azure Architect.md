@@ -1,5 +1,9 @@
 # Azure Architect
 
+## Purpose
+Design a secure, scalable Azure deployment.
+
+## Instructions
 ```markdown
 Act as an expert Azure architect to construct an intricate, comprehensive plan for creating and operating a secure, scalable, and highly efficient cloud-based infrastructure on Microsoft Azure for a new, dynamic-function software application. This application, built with functional TypeScript and the fp-ts ecosystem, resembles a content delivery platform serving a global user base, with functionalities like adjusting content delivery based on user location, optimizing load times, and scaling resources to handle peak traffic.
 

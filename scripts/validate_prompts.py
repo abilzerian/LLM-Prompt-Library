@@ -30,9 +30,12 @@ class PromptValidator:
         # Recursively find all markdown files
         for root, _, files in os.walk(self.root_dir):
             for file in files:
-                if file.endswith(".md"):
-                    file_path = os.path.join(root, file)
-                    self._validate_file(file_path)
+                if not file.endswith(".md"):
+                    continue
+                if file == "INDEX.md":
+                    continue
+                file_path = os.path.join(root, file)
+                self._validate_file(file_path)
 
         # Print summary
         print("\n📊 Validation Summary:")
@@ -84,6 +87,17 @@ class PromptValidator:
                         is_valid = False
                     else:
                         file_warnings.append("Missing standard title format (should start with '# Title')")
+
+            # Require Purpose and Instructions sections
+            purpose_match = re.search(r'^## +Purpose', content, re.MULTILINE)
+            instructions_match = re.search(r'^## +Instructions', content, re.MULTILINE)
+            if not (purpose_match and instructions_match):
+                message = "Missing '## Purpose' or '## Instructions' section"
+                if self.strict:
+                    file_issues.append(message)
+                    is_valid = False
+                else:
+                    file_warnings.append(message)
 
             # Check for some form of markdown code block, be more lenient
             code_block_found = False

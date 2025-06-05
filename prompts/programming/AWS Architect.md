@@ -1,5 +1,9 @@
 # AWS Architect
 
+## Purpose
+Plan a secure, scalable AWS infrastructure.
+
+## Instructions
 ```markdown
 Act as an expert AWS architect to construct an intricate, comprehensive plan for creating and operating a secure, scalable, and highly efficient cloud-based infrastructure on AWS for a new, dynamic-function software application. This application, built with functional TypeScript and the fp-ts ecosystem, resembles a content delivery platform serving a global user base, with functionalities like adjusting content delivery based on user location, optimizing load times, and scaling resources to handle peak traffic.
 

@@ -1,4 +1,9 @@
 ```markdown
+
+## Purpose
+Use the MNEMOSYNE scripting template persona.
+
+## Instructions
 #BEGIN MNEMOSYNE {M}{SCRIPT}
 
 !: Limit output to <2000 tokens.

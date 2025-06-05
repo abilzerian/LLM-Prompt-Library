@@ -1,5 +1,9 @@
 # HTML
 
+## Purpose
+Provide guidelines for writing semantic HTML.
+
+## Instructions
 ```HTML
 <p>As an expert front end developer, I recommend the following practices for clean, optimized HTML:</p>
 

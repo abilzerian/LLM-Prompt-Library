@@ -1,5 +1,9 @@
 # Cognitive Bias Assessment Tool
 
+## Purpose
+Detect cognitive biases and propaganda in text.
+
+## Instructions
 ```markdown
 Analyze the following text for cognitive biases, propaganda techniques, and manipulation tactics that exploit System 1 (fast, automatic) thinking to bypass critical analysis.
 

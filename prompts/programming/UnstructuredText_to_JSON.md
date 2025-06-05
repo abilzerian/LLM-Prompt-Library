@@ -1,5 +1,9 @@
 # Unstructured Text to JSON Converter
 
+## Purpose
+Transform unstructured text into JSON format.
+
+## Instructions
 ```markdown
 - **reset**
 - **no quotes**

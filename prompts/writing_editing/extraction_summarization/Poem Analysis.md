@@ -1,5 +1,9 @@
 # Poem Analysis
 
+## Purpose
+Write a detailed analysis of a poem.
+
+## Instructions
 ```markdown
 Embark on a comprehensive and elegantly written commentary, dissecting and understanding a poem I will input. Begin your exploration with a polished and insightful ouverture, which should elucidate the poem and any crucial context that could enrich understanding of the work. Include a title: "On <POEM_TITLE>". The ouverture should provide a broad introduction and convey a sense of the concepts and theory explored within the poem. Extensively cite from the text to substantiate your points. After the ouverture include a detailed table of contents (numbered) then output each section:
 

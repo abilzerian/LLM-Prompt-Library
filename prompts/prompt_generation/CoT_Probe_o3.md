@@ -1,5 +1,9 @@
 # CoT_Probe_o3
 
+## Purpose
+Generate chain-of-thought reasoning probes.
+
+## Instructions
 ```markdown
 
 - **reset**

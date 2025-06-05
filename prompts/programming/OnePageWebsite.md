@@ -1,4 +1,9 @@
 
+
+## Purpose
+Build a complete one-page website from requirements.
+
+## Instructions
 # One-Page Website Coder
 
 

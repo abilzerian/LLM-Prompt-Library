@@ -1,5 +1,9 @@
 # Jinja2 Code Optimizer
 
+## Purpose
+Iteratively optimize Jinja2 templates.
+
+## Instructions
 ```jinja
 {# Advanced system prompt for iterative code optimization #}
 {% set objective = "Optimize code for performance, readability, and maintainability" %}

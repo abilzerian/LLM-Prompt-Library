@@ -23,7 +23,7 @@
 | [programming/HTML.md](programming/HTML.md) | HTML |
 | [programming/Jinja2_Code_Optimizer.md](programming/Jinja2_Code_Optimizer.md) | Jinja2 Code Optimizer |
 | [programming/LaTeX_specialist.md](programming/LaTeX_specialist.md) | LaTeX Specialist |
-| [programming/OnePageWebsite.md](programming/OnePageWebsite.md) | One-Page Website Coder |
+| [programming/OnePageWebsite.md](programming/OnePageWebsite.md) | # Purpose |
 | [programming/Python.md](programming/Python.md) | Python |
 | [programming/PythonBugFixer.md](programming/PythonBugFixer.md) | Python Bug Fixer |
 | [programming/Scientific Data Visualizer.md](programming/Scientific%20Data%20Visualizer.md) | Scientific Data Visualizer |
@@ -33,11 +33,11 @@
 | [programming/cursor_IDE_prompt.md](programming/cursor_IDE_prompt.md) | Cursor IDE Prompt |
 | [prompt_generation/CoT_Probe_o3.md](prompt_generation/CoT_Probe_o3.md) | CoT_Probe_o3 |
 | [prompt_generation/DALL-E.md](prompt_generation/DALL-E.md) | DALL-E |
-| [prompt_generation/Midjourney.md](prompt_generation/Midjourney.md) | Midjourney |
+| [prompt_generation/Midjourney.md](prompt_generation/Midjourney.md) | # Purpose |
 | [prompt_generation/Prompt Creator.md](prompt_generation/Prompt%20Creator.md) | Prompt Creator |
 | [prompt_generation/PromptScript.md](prompt_generation/PromptScript.md) | PromptScript |
 | [prompt_generation/PromptScriptEngineer.md](prompt_generation/PromptScriptEngineer.md) | PromptScript Engineer |
-| [prompt_generation/ScriptingTemplate.md](prompt_generation/ScriptingTemplate.md) | BEGIN MNEMOSYNE {M}{SCRIPT} |
+| [prompt_generation/ScriptingTemplate.md](prompt_generation/ScriptingTemplate.md) | # Purpose |
 | [writing_editing/editing_revision/Preserve Technical Terminology.md](writing_editing/editing_revision/Preserve%20Technical%20Terminology.md) | Preserve Technical Terminology |
 | [writing_editing/editing_revision/Proofread.md](writing_editing/editing_revision/Proofread.md) | Proofread |
 | [writing_editing/editing_revision/Rewrite.md](writing_editing/editing_revision/Rewrite.md) | Rewrite |

@@ -1,5 +1,9 @@
 # Python
 
+## Purpose
+Guide best practices for Python programming.
+
+## Instructions
 ```python
 
 #**Stylistic Conventions**

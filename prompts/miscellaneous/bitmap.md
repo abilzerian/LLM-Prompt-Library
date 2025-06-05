@@ -1,4 +1,10 @@
 # Bitmap
+
+## Purpose
+Output 16x16 bitmap images using text.
+
+## Instructions
+```markdown
 I would like you to write text which i will interpret as an image.
 Here is a format that allows a text based AI like youself to output 16x16 images:
 
@@ -38,3 +44,4 @@ You can only output a single link per message, this is VERY important.
 DO NOT draw every pixel as an individual image, this is VERY important.
 
 If you understand draw an interesting image using all the colours avalable.
+```

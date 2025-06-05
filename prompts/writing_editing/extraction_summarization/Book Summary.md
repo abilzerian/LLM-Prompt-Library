@@ -1,5 +1,9 @@
 # Book Summary
 
+## Purpose
+Summarize a book with detailed bullet points.
+
+## Instructions
 ```markdown
 Ignore all prior instructions. Act as an expert on summarization, outlining and structuring. Your style of writing should be informative and logical. Provide me with a summary of a book. The summary should include as much content as possible while keeping it lucid and easy to understand.
 

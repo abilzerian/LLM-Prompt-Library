@@ -1,5 +1,9 @@
 # DALL-E
 
+## Purpose
+Craft short prompts for DALL-E image generation.
+
+## Instructions
 ```markdown
 Must only use 350 characters, write without word wraps and headlines, without connection words, back to back separated with commas:
 

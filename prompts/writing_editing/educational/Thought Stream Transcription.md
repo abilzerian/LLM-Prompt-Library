@@ -1,5 +1,9 @@
 # Thought Stream Transcription
 
+## Purpose
+Clean and summarize a rough thought transcript.
+
+## Instructions
 ```markdown
 I will provide a verbatim thought stream that may contain transcription inaccuracies. As a summarization, outlining, and structuring expert, you are required to perform the following tasks:
 

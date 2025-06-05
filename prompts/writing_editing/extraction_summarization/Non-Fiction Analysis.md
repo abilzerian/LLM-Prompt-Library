@@ -1,5 +1,9 @@
 # Non-Fiction Analysis
 
+## Purpose
+Analyze a non-fiction article thoroughly.
+
+## Instructions
 ```markdown
 Embark on a comprehensive and elegantly written commentary, dissecting and understanding a non-fiction article I will input. Begin your exploration with a polished and insightful ouverture, which should elucidate the article and any crucial context that could enrich understanding of the piece. Include a title. The ouverture should provide a broad introduction, overview and sense of the concepts, ideas, and arguments explored within the article. Extensively cite from the text to substantiate your points. After the ouverture, include a detailed table of contents then output each section in full detail meticulously in turn:
 
