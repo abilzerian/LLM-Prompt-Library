@@ -12,8 +12,7 @@ import argparse
 import json
 import statistics
 from collections import defaultdict, Counter
-from typing import Dict, List, Tuple, Any, Optional
-import math
+from typing import Dict, List, Tuple, Any
 import random
 
 # Check if nltk is available (for advanced text analysis)
@@ -278,9 +277,7 @@ class PromptAnalyzer:
             complexity_count += len(re.findall(indicator_pattern, content, re.IGNORECASE))
         
         # Calculate base score
-        content_length = len(content)
-        weight = min(1.0, 1000 / content_length) if content_length > 0 else 0.5
-        
+
         # More instructions are good, more complexity is bad
         base_score = 50 + (instruction_count * 5) - (complexity_count * 3)
         

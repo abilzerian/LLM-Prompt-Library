@@ -2,13 +2,11 @@
 """
 Financial metacognition analysis tool for evaluating AI interpretations of financial prompts.
 """
-import re
 import json
 import argparse
 import os
-from typing import List, Dict, Any, Optional, Tuple
+from typing import List, Dict, Any, Optional
 import datetime
-import sys
 import spacy
 from spacy.matcher import Matcher
 

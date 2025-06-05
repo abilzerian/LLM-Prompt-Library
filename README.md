@@ -40,6 +40,8 @@
 | Programming | **15** | [AWS Architect](prompts/programming/AWS%20Architect.md) • [Code Explainer (explain code in plain english)](prompts/programming/Code_Explainer.md) |
 | Prompt Generation | **7** | [CoT_Probe_o3](prompts/prompt_generation/CoT_Probe_o3.md) • [DALL-E](prompts/prompt_generation/DALL-E.md) |
 | Writing & Editing | **14** | [Preserve Technical Terminology](prompts/writing_editing/editing_revision/Preserve%20Technical%20Terminology.md) • [Proofread](prompts/writing_editing/editing_revision/Proofread.md) |
+| Prompt Generation | **7** | [CoT_Probe_o3](prompts/prompt_generation/CoT_Probe_o3.md) • [DALL-E](prompts/prompt_generation/DALL-E.md) |
+| Writing & Editing | **14** | [Preserve Technical Terminology](prompts/writing_editing/editing_revision/Preserve%20Technical%20Terminology.md) • [Proofread](prompts/writing_editing/editing_revision/Proofread.md) |
 | **Total** | **43** | — |
 <!-- /AUTO‑GENERATED -->
 
@@ -56,10 +58,14 @@ cd LLM-Prompt-Library
 # helper scripts
 pip install -r scripts/requirements.txt
 
-# rebuild catalogue & README counts (CI & pre‑commit do this automatically)
+# install hook to auto-update the prompt catalogue
+pip install pre-commit
+pre-commit install
+
+# manual rebuild (usually handled by pre‑commit/CI)
 python scripts/build_index.py
 ```
-Need a demo or enterprise implementation? Contact <a href="https://x.com/alexbilz">Alex Bilzerian</a></sub>
+<sub>Need a demo or enterprise implementation? Contact <a href="https://x.com/alexbilz">Alex Bilzerian</a></sub>
 
 ⸻
 

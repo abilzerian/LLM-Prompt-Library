@@ -11,7 +11,7 @@ import re
 import argparse
 import sys
 import json
-from typing import Dict, List, Optional, Tuple
+from typing import Dict
 from collections import defaultdict
 
 # Check if tiktoken is available (for OpenAI models)

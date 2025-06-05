@@ -1,3 +1,4 @@
+# Bitmap
 I would like you to write text which i will interpret as an image.
 Here is a format that allows a text based AI like youself to output 16x16 images:
 
