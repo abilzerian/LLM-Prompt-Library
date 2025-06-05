@@ -253,6 +253,9 @@ python scripts/prompt_evolution.py --task "Generate creative stories" --populati
 # Use a specific LLM model with your API key
 python scripts/prompt_evolution.py --task "Create SQL queries" --model gpt-4 --api-key YOUR_API_KEY
 
+# If --api-key is not provided, the script will use OPENAI_API_KEY or
+# ANTHROPIC_API_KEY from the environment based on the chosen model.
+
 # Get detailed progress information
 python scripts/prompt_evolution.py --task "Design marketing copy" --verbose
 ```

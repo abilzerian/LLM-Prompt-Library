@@ -101,6 +101,9 @@ class PromptEvolution:
         self.max_iterations = max_iterations
         self.evaluation_samples = evaluation_samples
         self.verbose = verbose
+        if api_key is None:
+            env_var = "OPENAI_API_KEY" if model.startswith("gpt-") else "ANTHROPIC_API_KEY"
+            api_key = os.getenv(env_var)
         self.api_key = api_key
         
         # Set up output directory
@@ -118,13 +121,13 @@ class PromptEvolution:
         if OPENAI_AVAILABLE and model.startswith("gpt-"):
             if OPENAI_NEW_CLIENT:
                 # New OpenAI client (v1.0.0+)
-                self.llm_client = openai.OpenAI(api_key=api_key)
+                self.llm_client = openai.OpenAI(api_key=self.api_key)
             else:
                 # Legacy OpenAI client
-                openai.api_key = api_key
+                openai.api_key = self.api_key
                 self.llm_client = "openai_legacy"
         elif ANTHROPIC_AVAILABLE and model.startswith("claude-"):
-            self.llm_client = anthropic.Anthropic(api_key=api_key)
+            self.llm_client = anthropic.Anthropic(api_key=self.api_key)
         
         # Initialize PromptAnalyzer if available
         self.prompt_analyzer = None
