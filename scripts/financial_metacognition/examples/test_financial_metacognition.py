@@ -55,7 +55,7 @@ def main():
             response = f.read()
         
         print(f"\n{'='*80}")
-        print(f"TESTING FINANCIAL METACOGNITION ANALYSIS WITH CONFIGURATION:")
+        print("TESTING FINANCIAL METACOGNITION ANALYSIS WITH CONFIGURATION:")
         print(f"Region: {args.region}")
         print(f"Sentiment Analysis: {'Enabled' if args.sentiment else 'Disabled'}")
         print(f"Expected Accounting Standard: {args.accounting_standard}")

@@ -6,3 +6,12 @@ repos:
         entry: python scripts/build_index.py
         language: system
         pass_filenames: false
+-   repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.11.12
+    hooks:
+    - id: ruff
+-   repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.45.0
+    hooks:
+    - id: markdownlint
+      args: ["-c", ".markdownlint.yaml"]

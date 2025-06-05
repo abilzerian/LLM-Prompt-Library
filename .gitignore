@@ -102,6 +102,3 @@ vendor/bundle/bundler/gems/eventmachine-e7320417cf29
 
 # Jekyll
 _site
-
-# Agents
-AGENTS.md

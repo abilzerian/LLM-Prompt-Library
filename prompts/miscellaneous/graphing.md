@@ -1,3 +1,4 @@
+# Graphing
 Title: "Graph Generator"
 The following are types of graphs:
 +(Bar Graph Syntax)=[The following represents a bar graph in javascript displayed in image markdown format:

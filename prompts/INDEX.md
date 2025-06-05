@@ -10,6 +10,10 @@
 | [miscellaneous/Code Anything Now.md](miscellaneous/Code%20Anything%20Now.md) | Code Anything Now |
 | [miscellaneous/Custom Instructions.md](miscellaneous/Custom%20Instructions.md) | Custom Instructions |
 | [miscellaneous/MultiverseGPT.md](miscellaneous/MultiverseGPT.md) | MultiverseGPT |
+| [miscellaneous/antikythera.md](miscellaneous/antikythera.md) | Antikythera |
+| [miscellaneous/bitmap.md](miscellaneous/bitmap.md) | Bitmap |
+| [miscellaneous/graphing.md](miscellaneous/graphing.md) | Graphing |
+| [miscellaneous/textadventure.md](miscellaneous/textadventure.md) | Text Adventure |
 | [programming/AWS Architect.md](programming/AWS%20Architect.md) | AWS Architect |
 | [programming/Azure Architect.md](programming/Azure%20Architect.md) | Azure Architect |
 | [programming/Code_Explainer.md](programming/Code_Explainer.md) | Code Explainer (explain code in plain english) |

@@ -12,8 +12,7 @@ import argparse
 import json
 import statistics
 from collections import defaultdict, Counter
-from typing import Dict, List, Tuple, Any, Optional
-import math
+from typing import Dict, List, Tuple, Any
 import random
 
 # Check if nltk is available (for advanced text analysis)
@@ -278,9 +277,7 @@ class PromptAnalyzer:
             complexity_count += len(re.findall(indicator_pattern, content, re.IGNORECASE))
         
         # Calculate base score
-        content_length = len(content)
-        weight = min(1.0, 1000 / content_length) if content_length > 0 else 0.5
-        
+
         # More instructions are good, more complexity is bad
         base_score = 50 + (instruction_count * 5) - (complexity_count * 3)
         
@@ -366,7 +363,25 @@ class PromptAnalyzer:
             recommendations.extend(random.sample(general_recs, min(2, len(general_recs))))
         
         return recommendations
-    
+
+    def evaluate(self, prompt: str) -> float:
+        """Evaluate a prompt string and return a quality score between 0 and 1."""
+        if not prompt or len(prompt.strip()) < 10:
+            return 0.0
+
+        sections = self.extract_sections(prompt)
+        readability = self.calculate_readability_score(prompt)
+        structure = self.calculate_structure_score(sections)
+        clarity = self.calculate_clarity_score(prompt)
+
+        quality_score = (
+            readability * 0.3 +
+            structure * 0.4 +
+            clarity * 0.3
+        ) / 100
+
+        return max(0.0, min(1.0, quality_score))
+
     def analyze_prompt(self, file_path: str) -> Dict[str, Any]:
         """
         Analyze a single prompt file.

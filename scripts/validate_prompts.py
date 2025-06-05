@@ -10,7 +10,6 @@ import os
 import re
 import argparse
 import sys
-from typing import Dict, List, Set, Tuple
 
 
 class PromptValidator:
@@ -81,10 +80,10 @@ class PromptValidator:
                 
                 if not found_title:
                     if self.strict:
-                        file_issues.append(f"Missing title (should start with '# Title')")
+                        file_issues.append("Missing title (should start with '# Title')")
                         is_valid = False
                     else:
-                        file_warnings.append(f"Missing standard title format (should start with '# Title')")
+                        file_warnings.append("Missing standard title format (should start with '# Title')")
             
             # Check for some form of markdown code block, be more lenient
             code_block_found = False
@@ -121,10 +120,10 @@ class PromptValidator:
                 
                 if not found_indicator:
                     if self.strict:
-                        file_issues.append(f"Missing code block and no clear prompt indicators")
+                        file_issues.append("Missing code block and no clear prompt indicators")
                         is_valid = False
                     else:
-                        file_warnings.append(f"No clear code or instruction format detected")
+                        file_warnings.append("No clear code or instruction format detected")
             
             # Extract code block content for further analysis if we have triple backticks
             code_blocks = re.findall(r'```.*?\n(.*?)```', content, re.DOTALL)
@@ -174,7 +173,7 @@ class PromptValidator:
                         break
                 
                 if not found_instructions and self.strict:
-                    file_warnings.append(f"No clear instruction patterns detected")
+                    file_warnings.append("No clear instruction patterns detected")
                 
                 # Check for basic content length
                 if len(main_block.strip()) < 50:  # Very minimal length requirement
