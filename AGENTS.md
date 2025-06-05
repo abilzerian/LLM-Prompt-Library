@@ -26,7 +26,7 @@
 
 ## 3  Environment Setup
 
-1. **Clone** & **install deps** (Python 3.9+):
+1. **Clone** & **install deps** (Python 3.10+):
    ```bash
    git clone https://github.com/abilzerian/LLM-Prompt-Library.git
    cd LLM-Prompt-Library
@@ -62,9 +62,16 @@
    ```bash
    python scripts/build_index.py   # updates README & prompts/INDEX.md counts
    ```
-6. **Run unit tests** *(when present)*: `pytest -q`.
-7. **Commit** using conventional messages (e.g. `feat: add Stock Analyst prompt`).
-8. **Open a Pull Request**; the CI pipeline enforces style + index freshness.
+   *Never modify the sections marked `AUTO-GENERATED` in `README.md` or
+   `prompts/INDEX.md`; this script maintains them.*
+6. **Run pre-commit**:
+   ```bash
+   pre-commit run --all-files
+   ```
+   *Formats files, rebuilds the index, and applies linters.*
+7. **Run unit tests** *(when present)*: `pytest -q`.
+8. **Commit** using conventional messages (e.g. `feat: add Stock Analyst prompt`).
+9. **Open a Pull Request**; the CI pipeline enforces style + index freshness.
 
 ---
 
